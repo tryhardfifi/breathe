@@ -10,7 +10,7 @@ I did this 5 minute project after reading some articles on how breathing correct
 
 ## Installation
 
-You can download the app [here](https://github.com/filipeisho/breathe/releases) .
+You can download the app [here](https://github.com/filipeisho/breathe/releases).
 
 ## Contributing
 
