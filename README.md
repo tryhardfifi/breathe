@@ -1,6 +1,6 @@
-# breathe 💨💨
+# breathe: Peripheral breath trainer 💨💨
 
-This is a very simple app that helps you breathe correctly while you work on the computer. The app window is very small and always stays on top so you can look at it peripherally.
+Breathe is a peripheral breath trainer, it helps you breathe correctly so you can stay calm and focus on what matters. Breathe's window is small and it always stays on top so you can look at it peripherally, while doing other stuff.
 
 ## Motivation
 I did this 5 minute project after reading some articles on how breathing correctly can help you focus and can calm you. I don't expect this to work for everyone but it does indeed work for me. Some of the articles:
