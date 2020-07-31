@@ -1,5 +1,4 @@
 # breathe 💨💨
-# Description
 
 This is a very simple app that helps you breathe correctly while you work on the computer. The app window is very small and always stays on top so you can look at it peripherally.
 
