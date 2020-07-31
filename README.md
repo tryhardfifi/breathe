@@ -2,6 +2,8 @@
 
 Breathe is a peripheral breath trainer, it helps you breathe correctly so you can stay calm and focus on what matters. Breathe's window is small and it always stays on top so you can look at it peripherally, while doing other stuff.
 
+![Alt Text](./github.gif)
+
 ## Motivation
 I did this 5 minute project after reading some articles on how breathing correctly can help you focus and can calm you. I don't expect this to work for everyone but it does indeed work for me. Some of the articles:
 - https://news.ycombinator.com/item?id=13508038
