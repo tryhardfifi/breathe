@@ -1,6 +1,6 @@
-# breathe: distraction free peripheral breath trainer 💨💨
+# breathe: peripheral breath trainer 💨💨
 
-Breathe is a distraction free peripheral breath trainer, it helps you breathe correctly so you can stay calm and focus on what matters. Breathe's window is small and it always stays on top so you can look at it peripherally, while doing other stuff.
+Breathe is a (distraction-free) peripheral breath trainer, it helps you breathe correctly so you can stay calm and focus on what matters. Breathe's window is small and it always stays on top so you can look at it peripherally, while doing other stuff.
 
 ![Alt Text](./github.gif)
 
