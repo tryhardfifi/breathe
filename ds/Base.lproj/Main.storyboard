@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,9 +16,16 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="breathe" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="Hide breathe" keyEquivalent="h" id="s06-XD-6W9">
+                                        <menuItem title="About breathe" id="s06-XD-6W9">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="dUI-Pv-GEs"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="sb1-TL-PJo"/>
+                                        <menuItem title="Hide breathe" keyEquivalent="h" id="kY0-jW-PTp">
+                                            <connections>
+                                                <action selector="hide:" target="Ady-hI-5gd" id="H5e-5M-JiA"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
@@ -73,23 +81,111 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="177" height="170"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSr-Ss-KLg">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="ezgif.com-crop(2)" id="agE-sx-Gaf"/>
-                            </imageView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="oRx-Yx-2h9" customClass="GraphView" customModule="breathe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="177" height="170"/>
+                            </customView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="oRx-Yx-2h9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="22G-Qr-Pbt"/>
+                            <constraint firstItem="oRx-Yx-2h9" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="67G-P6-4kk"/>
+                            <constraint firstAttribute="trailing" secondItem="oRx-Yx-2h9" secondAttribute="trailing" id="E0o-o5-cf2"/>
+                            <constraint firstAttribute="bottom" secondItem="oRx-Yx-2h9" secondAttribute="bottom" id="M6o-yp-fP9"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="Graph" destination="oRx-Yx-2h9" id="ysr-ZV-Pgf"/>
+                        <outlet property="coloredView" destination="oRx-Yx-2h9" id="zBL-OK-Ojx"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="59.5" y="703"/>
+        </scene>
+        <!--Settings Controller-->
+        <scene sceneID="0kQ-PP-7dO">
+            <objects>
+                <viewController storyboardIdentifier="SettingsController" id="3WX-39-pDo" customClass="SettingsController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Pk6-5C-Ey8">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BX3-sW-1Cm">
+                                <rect key="frame" x="217" y="75" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6qK-Oq-td5">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="applyWasPressed:" target="3WX-39-pDo" id="m2b-6O-jRp"/>
+                                </connections>
+                            </button>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QHA-x5-9CN">
+                                <rect key="frame" x="209" y="197" width="96" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="6Zn-yy-4st"/>
+                                <connections>
+                                    <action selector="BreathingInWasUpdated:" target="3WX-39-pDo" id="w7v-DT-4Sb"/>
+                                </connections>
+                            </slider>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Dz-Ti-SJV">
+                                <rect key="frame" x="209" y="163" width="96" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="oaZ-zn-2rq"/>
+                                <connections>
+                                    <action selector="HoldingWasUpdated:" target="3WX-39-pDo" id="sKb-8W-wY1"/>
+                                </connections>
+                            </slider>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Daa-Qo-fbm">
+                                <rect key="frame" x="209" y="131" width="96" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="igQ-tp-TqA"/>
+                                <connections>
+                                    <action selector="BreathingOutWasUpdated:" target="3WX-39-pDo" id="xef-HS-nwF"/>
+                                </connections>
+                            </slider>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gJO-ff-8mU">
+                                <rect key="frame" x="110" y="133" width="86" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Breathing out" id="mRb-gv-tnu">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ua8-hu-3cU">
+                                <rect key="frame" x="122" y="165" width="51" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Holding" id="cxD-BP-Yyl">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ulB-SQ-0YU">
+                                <rect key="frame" x="115" y="199" width="77" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Breathing in" id="V21-Xh-xbn">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="Apply" destination="BX3-sW-1Cm" id="Kwm-6d-WRL"/>
+                        <outlet property="Speed1" destination="QHA-x5-9CN" id="asn-XY-dgL"/>
+                        <outlet property="Speed2" destination="3Dz-Ti-SJV" id="kO9-3s-rVI"/>
+                        <outlet property="Speed3" destination="Daa-Qo-fbm" id="F5I-4h-oId"/>
+                    </connections>
+                </viewController>
+                <customObject id="koA-Xa-sZG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-270" y="627"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ezgif.com-crop(2)" width="350" height="350"/>
-    </resources>
 </document>

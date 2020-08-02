@@ -32,6 +32,8 @@
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>
 	<true/>
+	<key>LSUIElement</key>
+	<false/>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
 </dict>
