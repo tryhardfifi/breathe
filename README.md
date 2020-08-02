@@ -12,7 +12,18 @@ I did this 5 minute project after reading some articles on how breathing correct
 
 ## Installation
 
+### Mac
+
 You can download the app [here](https://github.com/filipeisho/breathe/releases).
+
+### Linux
+
+Right now breathe doesn't run on linux but [@amar-laksh](https://github.com/amar-laksh) provided an awesome KISS solution:
+
+- Install imv: https://github.com/eXeC64/imv (really lightweight viewer)
+- Download this gif breathe.gif: https://quietkit.com/img/box-breathing-4x-v03.gif
+- run imv breathe.gif
+- Set it to a custom shortcut and press q to close window.
 
 ## Contributing
 
@@ -20,7 +31,8 @@ Feel free to Contribute to this project!
 
 ## Credits
 
--   [Filippo Facioni](https://github.com/filipeisho)
+-   [@filipeisho](https://github.com/filipeisho)
+-   [@amar-laksh](https://github.com/amar-laksh)
 
 ## License
 
