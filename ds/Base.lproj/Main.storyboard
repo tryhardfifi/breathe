@@ -9,6 +9,9 @@
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
+                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="breathe" customModuleProvider="target"/>
+                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
@@ -49,51 +52,33 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="breathe" customModuleProvider="target"/>
-                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="hIz-AP-VOD">
-            <objects>
-                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="177" height="170"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="oRx-Yx-2h9" customClass="GraphView" customModule="breathe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="177" height="170"/>
-                            </customView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="oRx-Yx-2h9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="22G-Qr-Pbt"/>
-                            <constraint firstItem="oRx-Yx-2h9" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="67G-P6-4kk"/>
-                            <constraint firstAttribute="trailing" secondItem="oRx-Yx-2h9" secondAttribute="trailing" id="E0o-o5-cf2"/>
-                            <constraint firstAttribute="bottom" secondItem="oRx-Yx-2h9" secondAttribute="bottom" id="M6o-yp-fP9"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="Graph" destination="oRx-Yx-2h9" id="ysr-ZV-Pgf"/>
-                        <outlet property="coloredView" destination="oRx-Yx-2h9" id="zBL-OK-Ojx"/>
-                    </connections>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="59.5" y="703"/>
-        </scene>
-        <!--Settings Controller-->
         <scene sceneID="0kQ-PP-7dO">
             <objects>
-                <viewController storyboardIdentifier="SettingsController" id="3WX-39-pDo" customClass="SettingsController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" alphaValue="0.59999999999999998" id="Pk6-5C-Ey8">
-                        <rect key="frame" x="0.0" y="0.0" width="197" height="173"/>
+                <viewController storyboardIdentifier="ViewController" id="3WX-39-pDo" customClass="ViewController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" alphaValue="0.59999999999999998" id="Pk6-5C-Ey8">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView wantsLayer="YES" fixedFrame="YES" alphaValue="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="UhT-qf-Qfg" customClass="GraphView" customModule="breathe" customModuleProvider="target">
-                                <rect key="frame" x="-20" y="-34" width="237" height="242"/>
+                            <customView fixedFrame="YES" alphaValue="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="UhT-qf-Qfg" customClass="GraphView" customModule="breathe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfJ-iM-W5i">
+                                        <rect key="frame" x="150" y="168" width="49" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="⚙️" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nmU-gs-agr">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="ToggleSettings:" target="3WX-39-pDo" id="476-3S-6zb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                             </customView>
                         </subviews>
                     </view>
@@ -104,13 +89,13 @@
                 </viewController>
                 <customObject id="koA-Xa-sZG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-161.5" y="510.5"/>
+            <point key="canvasLocation" x="-110" y="75"/>
         </scene>
         <!--Settings Controller-->
         <scene sceneID="Y3F-OS-NH8">
             <objects>
                 <customObject id="35J-0y-qXK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController id="SUN-0T-fHH" customClass="SettingsController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsController" id="SUN-0T-fHH" customClass="SettingsController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Cym-Bi-Pb6">
                         <rect key="frame" x="0.0" y="0.0" width="235" height="173"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -127,7 +112,7 @@
                                 </connections>
                             </button>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z5z-Iq-tBL">
-                                <rect key="frame" x="121" y="135" width="96" height="19"/>
+                                <rect key="frame" x="121" y="119" width="96" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="mpV-9w-UmL"/>
                                 <connections>
@@ -135,7 +120,7 @@
                                 </connections>
                             </slider>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JS1-CH-nwI">
-                                <rect key="frame" x="121" y="101" width="96" height="19"/>
+                                <rect key="frame" x="121" y="85" width="96" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Xkw-I0-cHw"/>
                                 <connections>
@@ -143,7 +128,7 @@
                                 </connections>
                             </slider>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sLF-fG-ag9">
-                                <rect key="frame" x="121" y="69" width="96" height="19"/>
+                                <rect key="frame" x="121" y="53" width="96" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Ssd-gU-roY"/>
                                 <connections>
@@ -151,7 +136,7 @@
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JPf-qN-djg">
-                                <rect key="frame" x="22" y="71" width="86" height="16"/>
+                                <rect key="frame" x="22" y="55" width="86" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Breathing out" id="bMN-fA-xqp">
                                     <font key="font" metaFont="system"/>
@@ -160,7 +145,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldD-XY-ABx">
-                                <rect key="frame" x="34" y="103" width="51" height="16"/>
+                                <rect key="frame" x="34" y="87" width="51" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Holding" id="kak-N0-qbg">
                                     <font key="font" metaFont="system"/>
@@ -169,7 +154,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSs-k8-Wt3">
-                                <rect key="frame" x="27" y="137" width="77" height="16"/>
+                                <rect key="frame" x="27" y="121" width="77" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Breathing in" id="rU4-Yi-vbn">
                                     <font key="font" metaFont="system"/>
@@ -187,7 +172,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-419.5" y="776.5"/>
+            <point key="canvasLocation" x="-368" y="76"/>
         </scene>
     </scenes>
 </document>

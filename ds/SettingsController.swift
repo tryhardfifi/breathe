@@ -34,11 +34,11 @@ class SettingsController: NSViewController {
      override func viewDidLoad() {
           super.viewDidLoad()
           DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-              self.deflate()
+              //self.deflate()
           }
         
       }
-      
+ 
       func inflate(){
           NSAnimationContext.runAnimationGroup({_ in
            NSAnimationContext.beginGrouping()
@@ -63,8 +63,6 @@ class SettingsController: NSViewController {
           
       }
       func deflate(){
-          let finalSizeX = self.coloredView.frame.size.width * 0.5
-          let finalSizeY = self.coloredView.frame.size.height * 0.5
           NSAnimationContext.runAnimationGroup({_ in
            NSAnimationContext.beginGrouping()
                NSAnimationContext.current.duration = 4.0
@@ -75,8 +73,8 @@ class SettingsController: NSViewController {
               NSAnimationContext.beginGrouping()
               NSAnimationContext.current.duration = 4.0
               var size = self.coloredView.frame.size
-              size.height = finalSizeX
-              size.width = finalSizeY
+              size.height *= 0.5
+              size.width *= 0.5
               self.coloredView.animator().setFrameSize(size)
               
               NSAnimationContext.endGrouping()

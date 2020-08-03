@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         // statusItem.button?.title = "breathe dude"
         
-        statusItem.button?.title = "breathe"
+        statusItem.button?.title = "💨"
         
 
         statusItem.button?.target = self
@@ -34,8 +34,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func showSettings(){
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
-        guard let vc = storyboard.instantiateController(withIdentifier: "SettingsController") as? SettingsController else {
-            fatalError("Unable to find SettingsController in the storyboard")
+        guard let vc = storyboard.instantiateController(withIdentifier: "ViewController") as? ViewController else {
+            fatalError("Unable to find ViewController in the storyboard")
         }
         //guard let button = statusItem.button else {
         //    fatalError("Unable to get button")
@@ -46,7 +46,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //let rect = NSRect(x: -20, y: 0, width: 100, height: 100)
         //popoverView.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
         vc.presentAsModalWindow(vc)
-        vc.view.window?.title = "breathe"
+        vc.view.window?.title = "breathe💨"
+        vc.view.window?.titlebarAppearsTransparent = true
+        vc.view.window?.styleMask.remove(.resizable)
+        //vc.view.window?.titleVisibility = .hidden
+        vc.view.window?.styleMask.insert(.fullSizeContentView)
+        vc.view.window?.isOpaque = false
+        vc.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.9)
         vc.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
     }
 

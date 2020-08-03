@@ -14,12 +14,12 @@ class GraphView: NSView {
       override func draw(_ dirtyRect: NSRect) {
           let h = dirtyRect.height
           let w = dirtyRect.width
-          var color:NSColor = NSColor.init(red: 211/255, green: 155/255, blue: 104/255, alpha: 0.8)
+          var color:NSColor = NSColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
           //color = NSColor.orange.withAlphaComponent(0.65)
           let x = self.frame.size.width
-          var ovalPath = NSBezierPath(ovalIn: NSRect(x: 40,y: 40,width: (w * 0.65),height: (h * 0.65)))
-
-       
+          var ovalPath = NSBezierPath(ovalIn: NSRect(x: 49,y: 46,width: (w * 0.5),height: (h * 0.5)))
+            
+          
      
           color.set()
           ovalPath.fill()
