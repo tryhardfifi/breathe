@@ -87,25 +87,14 @@
         <scene sceneID="0kQ-PP-7dO">
             <objects>
                 <viewController storyboardIdentifier="SettingsController" id="3WX-39-pDo" customClass="SettingsController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="Pk6-5C-Ey8">
-                        <rect key="frame" x="0.0" y="0.0" width="192" height="173"/>
+                    <view key="view" wantsLayer="YES" alphaValue="0.59999999999999998" id="Pk6-5C-Ey8">
+                        <rect key="frame" x="0.0" y="0.0" width="197" height="173"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UhT-qf-Qfg" customClass="GraphView" customModule="breathe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="3" width="177" height="170"/>
+                            <customView wantsLayer="YES" fixedFrame="YES" alphaValue="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="UhT-qf-Qfg" customClass="GraphView" customModule="breathe" customModuleProvider="target">
+                                <rect key="frame" x="-20" y="-34" width="237" height="242"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hp8-wd-mtN">
-                                <rect key="frame" x="158" y="136" width="34" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="roundTextured" title="left" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kET-kO-mU2">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="left:" target="3WX-39-pDo" id="Bec-E9-W46"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -115,7 +104,7 @@
                 </viewController>
                 <customObject id="koA-Xa-sZG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-164" y="510.5"/>
+            <point key="canvasLocation" x="-161.5" y="510.5"/>
         </scene>
         <!--Settings Controller-->
         <scene sceneID="Y3F-OS-NH8">

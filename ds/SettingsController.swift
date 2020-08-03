@@ -11,36 +11,7 @@ import Cocoa
 class SettingsController: NSViewController {
     @IBOutlet var Apply: NSButton!
     @IBOutlet weak var coloredView: GraphView!
-   // let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
-    @IBAction func left(_ sender: Any) {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
-              guard let vc = storyboard.instantiateController(withIdentifier: "SettingsController") as? SettingsController else {
-                  fatalError("Unable to find SettingsController in the storyboard")
-              }
-              guard let button = statusItem.button else {
-                        fatalError("Unable to get button")
-                    }
-              let popoverView = NSPopover()
-              
-              popoverView.contentViewController = vc
-              popoverView.behavior = .transient
-              button.translateOrigin(to: NSPoint(x: -10, y: -20))
-              //let rect = NSRect(x: -20, y: 0, width: 100, height: 100)
-              //popoverView.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
-        popoverView.show(relativeTo: .zero, of: button, preferredEdge: NSRectEdge.minY)
-        let positioningView = NSView()
-            
-        positioningView.frame = (sender as AnyObject).frame
-
-        let popover = NSPopover()
-        // configure popover here
-
-        popover.show(relativeTo: .zero, of: positioningView, preferredEdge: .maxX)
-
-        positioningView.frame = NSMakeRect(0, -200, 10, 10)
-    }
     @IBAction func Settings(_ sender: Any) {
     }
     
