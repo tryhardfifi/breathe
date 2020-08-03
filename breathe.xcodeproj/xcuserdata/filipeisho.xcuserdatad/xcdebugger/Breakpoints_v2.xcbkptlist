@@ -3,4 +3,54 @@
    uuid = "5C52428C-111D-4A46-BEBE-051C7E2A901A"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C5167E22-E30B-412B-87E4-04093C2362D8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ds/SettingsController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C5167E22-E30B-412B-87E4-04093C2362D8 - 4f533d5f3df466a1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "breathe.SettingsController.viewDidLoad() -&gt; ()"
+                  moduleName = "breathe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/filipeisho/Desktop/breathe/ds/SettingsController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "331">
+               </Location>
+               <Location
+                  uuid = "C5167E22-E30B-412B-87E4-04093C2362D8 - 6e27eac415f678d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in breathe.SettingsController.viewDidLoad() -&gt; ()"
+                  moduleName = "breathe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/filipeisho/Desktop/breathe/ds/SettingsController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -11,19 +11,16 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    var hello = "hell"
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         // statusItem.button?.title = "breathe dude"
         
-        hello = hello + "o"
-        statusItem.button?.title = hello
+        statusItem.button?.title = "breathe"
         
 
         statusItem.button?.target = self
         statusItem.button?.action = #selector(showSettings)
-      
         //let itemImage = NSImage(named: "clock")
        // itemImage?.isTemplate = true
         //statusItem.button?.image = itemImage
@@ -34,6 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
+    
     @objc func showSettings(){
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateController(withIdentifier: "SettingsController") as? SettingsController else {
@@ -45,6 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let popoverView = NSPopover()
         popoverView.contentViewController = vc
         popoverView.behavior = .transient
+        //let rect = NSRect(x: -20, y: 0, width: 100, height: 100)
         popoverView.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
     }
 

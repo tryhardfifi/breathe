@@ -33,7 +33,7 @@
 	<key>NSSupportsAutomaticTermination</key>
 	<true/>
 	<key>LSUIElement</key>
-	<false/>
+	<true/>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
 </dict>
