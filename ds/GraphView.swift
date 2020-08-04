@@ -24,7 +24,7 @@ class GraphView: NSView {
           color.set()
           ovalPath.fill()
           ovalPath.stroke()
-        
+           
 
 //          var drect = NSRect(x: (w * 0.66),y: (h * 0.66),width: (w * 0.5),height: (h * 0.5))
 //

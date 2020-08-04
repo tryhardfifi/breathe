@@ -9,83 +9,57 @@
 import Cocoa
 
 class SettingsController: NSViewController {
-    @IBOutlet var Apply: NSButton!
-    @IBOutlet weak var coloredView: GraphView!
 
-    @IBAction func Settings(_ sender: Any) {
+    
+    @IBOutlet weak var breathingInLabel: NSTextField!
+    @IBOutlet weak var firstHoldingLabel: NSTextField!
+    @IBOutlet weak var breathingOutLabel: NSTextField!
+    @IBOutlet weak var secondHoldingLabel: NSTextField!
+    @IBOutlet weak var exerciseSelector: NSPopUpButton!
+    
+    @IBAction func selectWasPressed(_ sender: Any) {
+        var a = self.readPropertyList()
+        let b = a["exercises"] as! [String:AnyObject]
+        let c = b[exerciseSelector.stringValue] as! [String:AnyObject]
+        a["inflate"] = c["inflate"]
+        a["hold_after_inflate"] = c["hold_after_inflate"]
+        a["deflate"] = c["deflate"]
+        a["hold_after_deflate"] = c["hold_after_deflate"]
+      
+        self.view.window?.close()
     }
-    
-    
-    @IBAction func applyWasPressed(_ sender: Any) {
+    @IBAction func breathingInWasUpdated(_ sender: NSStepper) {
+         breathingInLabel.stringValue = String(sender.integerValue)
     }
-    
-    @IBAction func HoldingWasUpdated(_ sender: NSSlider) {
-        print(sender.integerValue)
+    @IBAction func firstHoldingWasUpdated(_ sender: NSStepper) {
+           firstHoldingLabel.stringValue = String(sender.integerValue)
+       }
+    @IBAction func breathingOutWasUpdated(_ sender: NSStepper) {
+          breathingOutLabel.stringValue = String(sender.integerValue)
     }
-    
-    @IBAction func BreathingInWasUpdated(_ sender: NSSlider) {
-        print(sender.integerValue)
+    @IBAction func secondHoldingWasUpdated(_ sender: NSStepper) {
+         secondHoldingLabel.stringValue = String(sender.integerValue)
     }
-    
-    @IBAction func BreathingOutWasUpdated(_ sender: NSSlider) {
-        print(sender.integerValue)
+    func readPropertyList()  -> [String:AnyObject] {
+        var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
+        var plistData: [String: AnyObject] = [:] //Our data
+        let plistPath: String? = Bundle.main.path(forResource: "Exercises", ofType: "plist")! //the path of the data
+        let plistXML = FileManager.default.contents(atPath: plistPath!)!
+        do {//convert the data to a dictionary and handle errors.
+            plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListFormat) as! [String:AnyObject]
+        } catch {
+            print("Error reading plist: \(error), format: \(propertyListFormat)")
+        }
+        return plistData
     }
-    
-     override func viewDidLoad() {
-          super.viewDidLoad()
-          DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-              //self.deflate()
-          }
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let a = self.readPropertyList()
+        let b = a["exercises"] as! [String:AnyObject]
+        b.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
       }
  
-      func inflate(){
-          NSAnimationContext.runAnimationGroup({_ in
-           NSAnimationContext.beginGrouping()
-               NSAnimationContext.current.duration = 4.0
-               var origin = self.coloredView.frame.origin
-               origin.x -= 0.0000001
-               self.coloredView.animator().setFrameOrigin(origin)
-               
-              NSAnimationContext.beginGrouping()
-              NSAnimationContext.current.duration = 4.0
-              var size = self.coloredView.frame.size
-              size.height *= 2
-              size.width *= 2
-              self.coloredView.animator().setFrameSize(size)
-
-              NSAnimationContext.endGrouping()
-         
-              NSAnimationContext.endGrouping()
-          }, completionHandler:{
-                     self.deflate()
-              })
-          
-      }
-      func deflate(){
-          NSAnimationContext.runAnimationGroup({_ in
-           NSAnimationContext.beginGrouping()
-               NSAnimationContext.current.duration = 4.0
-               var origin = self.coloredView.frame.origin
-               origin.x -= 0.0000001
-               self.coloredView.animator().setFrameOrigin(origin)
-               
-              NSAnimationContext.beginGrouping()
-              NSAnimationContext.current.duration = 4.0
-              var size = self.coloredView.frame.size
-              size.height *= 0.5
-              size.width *= 0.5
-              self.coloredView.animator().setFrameSize(size)
-              
-              NSAnimationContext.endGrouping()
-              NSAnimationContext.endGrouping()
-          }, completionHandler:{
-                  //self.coloredView.frame.size.height = finalSizeX
-                  //self.coloredView.frame.size.width = finalSizeY
-                  self.inflate()
-              })
-          
-      }
+     
     override func viewDidAppear() {
         super.viewDidAppear()
         view.window?.level = .floating
