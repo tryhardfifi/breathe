@@ -24,6 +24,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
            }
            return plistData
        }
+    func readRealPropertyList()  -> [String:Any] {
+        var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
+        var plistData: [String:Any] = [:] //Our data
+        let plistPath = applicationDocumentsDirectory().appending("/exercises.plist")
+        let plistXML = FileManager.default.contents(atPath: plistPath)!
+            do {//convert the data to a dictionary and handle errors.
+            plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListFormat) as! [String:Any]
+            
+        } catch {
+            print("Error reading plist: \(error), format: \(propertyListFormat)")
+        }
+        return plistData
+    }
       func applicationDocumentsDirectory() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
              let basePath = paths.first ?? ""
@@ -51,6 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let vc = storyboard.instantiateController(withIdentifier: "ViewController") as? ViewController else {
             fatalError("Unable to find ViewController in the storyboard")
         }
+        
         vc.presentAsModalWindow(vc)
         vc.view.window?.title = "breathe💨"
         vc.view.window?.titlebarAppearsTransparent = true
@@ -59,7 +73,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         vc.view.window?.styleMask.insert(.fullSizeContentView)
         vc.view.window?.isOpaque = false
         vc.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.9)
-        vc.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
+        var a = self.readRealPropertyList() as! NSDictionary
+        let anchor = a["anchor"] as! String
+        print(anchor)
+        switch anchor {
+        case "Down + Left":
+            vc.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
+        case "Up + Left":
+            vc.view.window?.setFrameOrigin(NSPoint(x: 0,y:(NSScreen.main?.frame.height ?? 0)-200 ))
+        case "Down + Right":
+            vc.view.window?.setFrameOrigin(NSPoint(x: (NSScreen.main?.frame.width ?? 0)-200 ?? 0,y:0))
+        case "Up + Right":
+            vc.view.window?.setFrameOrigin(NSPoint(x: (NSScreen.main?.frame.width ?? 0)-200 ?? 0,y:(NSScreen.main?.frame.height ?? 0)-200 ))
+        default:
+            vc.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
+        }
+        
+
+        if anchor == "Left + Down"{
+            vc.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
+        }
+        if anchor == "Left + Up"{
+            vc.view.window?.setFrameOrigin(NSPoint(x: NSScreen.main?.frame.width ?? 0,y:0))
+        }
+        if anchor == "Right + Down"{
+            vc.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
+        }
+        if anchor == "Right + Up"{
+            vc.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
+        }
     }
 
 }

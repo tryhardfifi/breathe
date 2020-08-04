@@ -51,7 +51,7 @@ class ViewController: NSViewController {
         
         super.viewDidLoad()
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
             self.deflate()
         }
      
@@ -123,7 +123,6 @@ class ViewController: NSViewController {
     
     func deflate(){
         let duration = self.readPropertyList()
-
         self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.5, alpha: 0.85)
         var self_duration = duration["deflate"] as! Double
         if self_duration == 0 {

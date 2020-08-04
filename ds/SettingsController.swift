@@ -16,25 +16,47 @@ class SettingsController: NSViewController {
     @IBOutlet weak var breathingOutLabel: NSTextField!
     @IBOutlet weak var secondHoldingLabel: NSTextField!
     @IBOutlet weak var exerciseSelector: NSPopUpButton!
+    @IBOutlet weak var exerciseName: NSTextField!
     
-  
-   
+    @IBOutlet weak var anchorSelector: NSPopUpButton!
     
    
-    @IBAction func selectWasPressed(_ sender: Any) {
+    @IBAction func anchorWasUpdated(_ sender: NSPopUpButton) {
         var a = self.readPropertyList() as NSMutableDictionary
-        var selectedItem = exerciseSelector.titleOfSelectedItem!
-        var b = a["exercises"] as! NSMutableDictionary
-        var c = b[selectedItem] as! NSMutableDictionary
-        a["inflate"] = c["inflate"]
-        a["deflate"] = c["deflate"]
-        a["hold_after_inflate"] = c["hold_after_inflate"]
-        a["hold_after_deflate"] = c["hold_after_deflate"]
+        print(anchorSelector.stringValue)
+        a["anchor"] = sender.selectedItem
         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
         a.write(toFile: filepath, atomically: true)
+        a = self.readPropertyList() as NSMutableDictionary
 
+
+    }
+    
+    @IBAction func createWasPressed(_ sender: NSButton) {
+         var a = self.readPropertyList() as NSMutableDictionary
+         var b = a["exercises"] as! NSMutableDictionary
+         var c = ["inflate": breathingInLabel.intValue,"deflate": breathingOutLabel.intValue, "hold_after_inflate": firstHoldingLabel.intValue, "hold_after_deflate": secondHoldingLabel.intValue]
         
-        self.view.window?.close()
+         b[exerciseName.stringValue] = c
+         a["exercises"] = b
+         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
+         a.write(toFile: filepath, atomically: true)
+         var keys = b as! [String:AnyObject]
+         keys.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
+    }
+    
+    @IBAction func deleteWasPressed(_ sender: Any) {
+         var a = self.readPropertyList() as NSMutableDictionary
+         var b = a["exercises"] as! NSMutableDictionary
+        
+        print(b)
+        
+        b.removeObject(forKey: exerciseSelector.stringValue)
+        a["exercises"] = b
+        print(b)
+        let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
+        a.write(toFile: filepath, atomically: true)
+        
     }
     @IBAction func breathingInWasUpdated(_ sender: NSStepper) {
          breathingInLabel.stringValue = String(sender.integerValue)
