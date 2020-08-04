@@ -26,30 +26,44 @@ class ViewController: NSViewController {
                vc.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.9)
                vc.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
     }
-    func readPropertyList()  -> [String:AnyObject] {
+      func applicationDocumentsDirectory() -> String {
+      let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+           let basePath = paths.first ?? ""
+           return basePath
+       }
+
+      func readPropertyList()  -> [String:Any] {
           var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
-          var plistData: [String: AnyObject] = [:] //Our data
-          let plistPath: String? = Bundle.main.path(forResource: "Exercises", ofType: "plist")! //the path of the data
-          let plistXML = FileManager.default.contents(atPath: plistPath!)!
-          do {//convert the data to a dictionary and handle errors.
-              plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListFormat) as! [String:AnyObject]
+          var plistData: [String:Any] = [:] //Our data
+          let plistPath = applicationDocumentsDirectory().appending("/exercises.plist")
+          let plistXML = FileManager.default.contents(atPath: plistPath)!
+              do {//convert the data to a dictionary and handle errors.
+              plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListFormat) as! [String:Any]
+              
           } catch {
               print("Error reading plist: \(error), format: \(propertyListFormat)")
           }
           return plistData
       }
+    
   
     override func viewDidLoad() {
         
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        
         DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-            self.deflate(duration:self.readPropertyList())
+            self.deflate()
         }
      
     }
     
-    func inflate(duration:[String:AnyObject]){
-        let self_duration = duration["inflate"] as! Double
+    func inflate(){
+        let duration = self.readPropertyList()
+        var self_duration = duration["inflate"] as! Double
+        if self_duration == 0 {
+            self_duration = 0.000000001
+        }
+        
         self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.5, blue: 0.1, alpha: 0.85)
         NSAnimationContext.runAnimationGroup({_ in
          NSAnimationContext.beginGrouping()
@@ -71,15 +85,19 @@ class ViewController: NSViewController {
        
             NSAnimationContext.endGrouping()
         }, completionHandler:{
-                   self.hold_after_inflate(duration:duration)
+                   self.hold_after_inflate()
             })
         
     }
 
-    func hold_after_inflate(duration:[String:AnyObject]){
+    func hold_after_inflate(){
         self.view.window?.backgroundColor = NSColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.85)
-        let self_duration = duration["hold_after_inflate"] as! Double
+        let duration = self.readPropertyList()
 
+        var self_duration = duration["hold_after_inflate"] as! Double
+        if self_duration == 0 {
+                   self_duration = 0.000000001
+               }
            NSAnimationContext.runAnimationGroup({_ in
                   NSAnimationContext.beginGrouping()
                       NSAnimationContext.current.duration = self_duration
@@ -98,15 +116,19 @@ class ViewController: NSViewController {
                 
                      NSAnimationContext.endGrouping()
                  }, completionHandler:{
-                            self.deflate(duration:duration)
+                            self.deflate()
                      })
       }
 
     
-    func deflate(duration:[String:AnyObject]){
-        self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.5, alpha: 0.85)
-        let self_duration = duration["deflate"] as! Double
+    func deflate(){
+        let duration = self.readPropertyList()
 
+        self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.5, alpha: 0.85)
+        var self_duration = duration["deflate"] as! Double
+        if self_duration == 0 {
+                   self_duration = 0.000000001
+               }
         NSAnimationContext.runAnimationGroup({_ in
          NSAnimationContext.beginGrouping()
              NSAnimationContext.current.duration = self_duration
@@ -125,15 +147,19 @@ class ViewController: NSViewController {
             NSAnimationContext.endGrouping()
             NSAnimationContext.endGrouping()
         }, completionHandler:{
-                self.hold_after_deflate(duration:duration)
+                self.hold_after_deflate()
             })
         
     }
   
-   func hold_after_deflate(duration:[String:AnyObject]){
+   func hold_after_deflate(){
     self.view.window?.backgroundColor = NSColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.85)
-    let self_duration = duration["hold_after_deflate"] as! Double
+    let duration = self.readPropertyList()
 
+    var self_duration = duration["hold_after_deflate"] as! Double
+    if self_duration == 0 {
+               self_duration = 0.000000001
+           }
          NSAnimationContext.runAnimationGroup({_ in
                 NSAnimationContext.beginGrouping()
                     NSAnimationContext.current.duration = self_duration
@@ -152,7 +178,7 @@ class ViewController: NSViewController {
               
                    NSAnimationContext.endGrouping()
                }, completionHandler:{
-                          self.inflate(duration:duration)
+                          self.inflate()
                    })
     }
  
