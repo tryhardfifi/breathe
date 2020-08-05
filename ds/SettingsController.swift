@@ -17,45 +17,51 @@ class SettingsController: NSViewController {
     @IBOutlet weak var secondHoldingLabel: NSTextField!
     @IBOutlet weak var exerciseSelector: NSPopUpButton!
     @IBOutlet weak var exerciseName: NSTextField!
-    
     @IBOutlet weak var anchorSelector: NSPopUpButton!
     
-   
+    @IBAction func exerciseSelectorWasUpdated(_ sender: NSPopUpButton) {
+       let propertyList = self.readPropertyList() as NSMutableDictionary
+       let exercises = propertyList["exercises"] as! NSMutableDictionary
+       let title = sender.selectedItem?.title
+       let exercise = exercises[title] as! NSMutableDictionary
+       propertyList["exercise"] = title
+       propertyList["inflate"] = exercise["inflate"]
+       propertyList["deflate"] = exercise["deflate"]
+       propertyList["hold_after_inflate"] = exercise["hold_after_inflate"]
+       propertyList["hold_after_deflate"] = exercise["hold_after_deflate"]
+       let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
+       propertyList.write(toFile: filepath, atomically: true)
+    }
+    
     @IBAction func anchorWasUpdated(_ sender: NSPopUpButton) {
-        var a = self.readPropertyList() as NSMutableDictionary
-        print(anchorSelector.stringValue)
-        a["anchor"] = sender.selectedItem
+        let propertyList = self.readPropertyList() as NSMutableDictionary
+        propertyList["anchor"] = sender.selectedItem?.title
         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
-        a.write(toFile: filepath, atomically: true)
-        a = self.readPropertyList() as NSMutableDictionary
-
-
+        propertyList.write(toFile: filepath, atomically: true)
     }
     
     @IBAction func createWasPressed(_ sender: NSButton) {
-         var a = self.readPropertyList() as NSMutableDictionary
-         var b = a["exercises"] as! NSMutableDictionary
-         var c = ["inflate": breathingInLabel.intValue,"deflate": breathingOutLabel.intValue, "hold_after_inflate": firstHoldingLabel.intValue, "hold_after_deflate": secondHoldingLabel.intValue]
-        
-         b[exerciseName.stringValue] = c
-         a["exercises"] = b
+        let propertyList = self.readPropertyList() as NSMutableDictionary
+        let exercises = propertyList["exercises"] as! NSMutableDictionary
+        let new_exercise = ["inflate": breathingInLabel.intValue,"deflate": breathingOutLabel.intValue, "hold_after_inflate": firstHoldingLabel.intValue, "hold_after_deflate": secondHoldingLabel.intValue]
+         exercises[exerciseName.stringValue] = new_exercise
+         propertyList["exercises"] = exercises
          let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
-         a.write(toFile: filepath, atomically: true)
-         var keys = b as! [String:AnyObject]
+         propertyList.write(toFile: filepath, atomically: true)
+        let keys = exercises as! [String:AnyObject]
          keys.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
     }
     
     @IBAction func deleteWasPressed(_ sender: Any) {
-         var a = self.readPropertyList() as NSMutableDictionary
-         var b = a["exercises"] as! NSMutableDictionary
-        
-        print(b)
-        
-        b.removeObject(forKey: exerciseSelector.stringValue)
-        a["exercises"] = b
-        print(b)
+        let propertyList = self.readPropertyList() as NSMutableDictionary
+        let exercises = propertyList["exercises"] as! NSMutableDictionary
+        exercises.removeObject(forKey: exerciseSelector.selectedItem?.title)
+        propertyList["exercises"] = exercises
         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
-        a.write(toFile: filepath, atomically: true)
+        propertyList.write(toFile: filepath, atomically: true)
+        let newExercises = propertyList["exercises"] as! [String:AnyObject]
+        self.exerciseSelector.removeAllItems()
+        newExercises.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
         
     }
     @IBAction func breathingInWasUpdated(_ sender: NSStepper) {
@@ -94,15 +100,25 @@ class SettingsController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let a = self.readPropertyList()
-        let b = a["exercises"] as! [String:AnyObject]
-        b.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
-      }
+        let propertyList = self.readPropertyList()
+        let exercises = propertyList["exercises"] as! [String:AnyObject]
+        exercises.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
+        exerciseSelector.selectItem(withTitle: propertyList["exercise"] as! String)
+    }
  
      
     override func viewDidAppear() {
         super.viewDidAppear()
-        view.window?.level = .floating
+        self.view.window?.level = .floating
+        self.view.window?.title = "breathe 💨 preferences"
+        self.view.window?.titlebarAppearsTransparent = true
+        self.view.window?.styleMask.remove(.resizable)
+        self.view.window?.isOpaque = false
+        self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
+        self.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
+        let propertyList = self.readPropertyList() as NSDictionary
+        let anchor = propertyList["anchor"] as! String
+        self.view.window?.setFrameOrigin(NSPoint(x:((NSScreen.main?.frame.width ?? 0)/2) - 200,y:((NSScreen.main?.frame.height ?? 0)/2) - 200))
        
     }
    

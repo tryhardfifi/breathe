@@ -34,9 +34,8 @@ class ViewController: NSViewController {
     
   
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
+    
         DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
             self.deflate()
         }
@@ -172,8 +171,32 @@ class ViewController: NSViewController {
    
     override func viewDidAppear() {
         super.viewDidAppear()
-        view.window?.level = .floating
-       
+        print("as")
+        self.view.window?.level = .floating
+        self.view.window?.title = "breathe💨"
+        self.view.window?.titlebarAppearsTransparent = true
+        self.view.window?.styleMask.remove(.resizable)
+        //vc.view.window?.titleVisibility = .hidden
+        self.view.window?.styleMask.insert(.fullSizeContentView)
+        self.view.window?.isOpaque = false
+        self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 100)
+        let a = self.readPropertyList() as NSDictionary
+        let anchor = a["anchor"] as! String
+        switch anchor {
+        case "Down + Left":
+            self.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
+            
+        case "Up + Left":
+            self.view.window?.setFrameOrigin(NSPoint(x: 0,y:(NSScreen.main?.frame.height ?? 0)-200 ))
+        case "Down + Right":
+            self.view.window?.setFrameOrigin(NSPoint(x: (NSScreen.main?.frame.width ?? 0)-200,y:0))
+        case "Up + Right":
+            self.view.window?.setFrameOrigin(NSPoint(x: (NSScreen.main?.frame.width ?? 0)-200,y:(NSScreen.main?.frame.height ?? 0)-200 ))
+        default:
+            self.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
+        }
+
+
     }
     
    

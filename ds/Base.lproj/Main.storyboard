@@ -9,49 +9,64 @@
         <!--About-->
         <scene sceneID="phu-ci-7aA">
             <objects>
-                <viewController title="About" storyboardIdentifier="AboutWindow" id="AOl-xZ-yAY" sceneMemberID="viewController">
+                <viewController title="About" storyboardIdentifier="AboutWindow" id="AOl-xZ-yAY" customClass="AboutController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="GqX-nm-Jzi">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="357" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1iN-ei-Xd0">
+                                <rect key="frame" x="104" y="103" width="150" height="147"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="vBr-pf-hWd"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="irz-sA-hIQ">
+                                <rect key="frame" x="133" y="20" width="89" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="by @filipeisho" id="VO6-ze-Xo5">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
                     </view>
                 </viewController>
                 <customObject id="OYJ-1H-INx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="511" y="-257"/>
+            <point key="canvasLocation" x="572.5" y="-257"/>
         </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="breathe" customModuleProvider="target">
-                    <connections>
-                        <outlet property="statusMenu" destination="YT7-Ma-SBk" id="Zg8-v8-Hpv"/>
-                    </connections>
-                </customObject>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="breathe" customModuleProvider="target"/>
                 <menu id="YT7-Ma-SBk">
                     <items>
                         <menuItem title="About breathe" id="rN2-99-wzt">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="aboutBreatheMenuItem:" target="Voe-Tx-rLC" id="wRg-Ru-LY5"/>
+                                <action selector="aboutWasPressed:" target="tad-so-7G8" id="y1Z-0p-ofq"/>
+                                <segue destination="AOl-xZ-yAY" kind="show" id="lVW-rf-TWe"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Launch window" id="NlA-m8-pLR">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="launchWindowMenuItem:" target="Voe-Tx-rLC" id="Klf-6k-JPh"/>
+                                <action selector="lauchWindowWasPressed:" target="tad-so-7G8" id="C7t-Ma-g91"/>
+                                <segue destination="3WX-39-pDo" kind="show" id="xrk-cf-M92"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="g5L-tE-dpx"/>
                         <menuItem title="Preferences" id="DsF-Ep-kRd">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="preferencesMenuItem:" target="Voe-Tx-rLC" id="rpl-cr-A0G"/>
+                                <action selector="preferencesWasPressed:" target="tad-so-7G8" id="VnI-DA-i3Y"/>
+                                <segue destination="SUN-0T-fHH" kind="show" id="Jgi-XX-wmn"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="Pkd-tg-tiF"/>
                         <menuItem title="Quit" keyEquivalent="q" id="Kig-Ns-SIU">
                             <connections>
-                                <action selector="quitMenuItem:" target="Voe-Tx-rLC" id="3va-rV-cy3"/>
+                                <action selector="quitWasPressed:" target="tad-so-7G8" id="U90-jQ-Jgk"/>
                             </connections>
                         </menuItem>
                     </items>
@@ -64,6 +79,11 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
+                <customObject id="tad-so-7G8" customClass="StatusMenuController" customModule="breathe" customModuleProvider="target">
+                    <connections>
+                        <outlet property="statusMenu" destination="YT7-Ma-SBk" id="ydG-mN-eyN"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
@@ -145,7 +165,7 @@
                                     <menu key="menu" id="lZx-LJ-7GR"/>
                                 </popUpButtonCell>
                                 <connections>
-                                    <action selector="selectWasUpdated:" target="SUN-0T-fHH" id="vTN-Ko-ICc"/>
+                                    <action selector="exerciseSelectorWasUpdated:" target="SUN-0T-fHH" id="BVW-fd-GiH"/>
                                 </connections>
                             </popUpButton>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="xD2-oG-Tvi">
@@ -283,15 +303,15 @@
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0FD-0r-7Dx">
                                 <rect key="frame" x="83" y="283" width="133" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Left + Down" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8We-RM-6MY" id="6fi-TT-Har">
+                                <popUpButtonCell key="cell" type="push" title="Down + Left" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8We-RM-6MY" id="6fi-TT-Har">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <menu key="menu" id="14c-o1-Wko">
                                         <items>
-                                            <menuItem title="Left + Down" state="on" id="8We-RM-6MY"/>
-                                            <menuItem title="Left + Up" id="HDz-KU-ai1"/>
-                                            <menuItem title="Right + Down" id="Mw8-k5-1Ak"/>
-                                            <menuItem title="Right + Up" id="GGO-Hz-N6Z"/>
+                                            <menuItem title="Down + Left" state="on" id="8We-RM-6MY"/>
+                                            <menuItem title="Up + Left" id="HDz-KU-ai1"/>
+                                            <menuItem title="Down + Right" id="Mw8-k5-1Ak"/>
+                                            <menuItem title="Up + Right" id="GGO-Hz-N6Z"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>

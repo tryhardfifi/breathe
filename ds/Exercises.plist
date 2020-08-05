@@ -30,12 +30,14 @@
 		</dict>
 	</dict>
 	<key>deflate</key>
-	<integer>2</integer>
+	<integer>4</integer>
 	<key>hold_after_inflate</key>
-	<integer>2</integer>
+	<integer>4</integer>
 	<key>hold_after_deflate</key>
-	<integer>2</integer>
+	<integer>4</integer>
 	<key>inflate</key>
-	<integer>2</integer>
+	<integer>4</integer>
+	<key>exercise</key>
+	<string>4-4-4-4</string>
 </dict>
 </plist>
