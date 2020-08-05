@@ -11,21 +11,7 @@ import Cocoa
 class ViewController: NSViewController {
 
     @IBOutlet weak var coloredView: GraphView!
-    @IBAction func ToggleSettings(_ sender: Any) {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
-               guard let vc = storyboard.instantiateController(withIdentifier: "SettingsController") as? SettingsController else {
-                   fatalError("Unable to find ViewController in the storyboard")
-               }
-               vc.presentAsModalWindow(vc)
-               vc.view.window?.title = "breathe settings💨"
-               vc.view.window?.titlebarAppearsTransparent = true
-               vc.view.window?.styleMask.remove(.resizable)
-               //vc.view.window?.titleVisibility = .hidden
-               //vc.view.window?.styleMask.insert(.fullSizeContentView)
-               vc.view.window?.isOpaque = false
-               vc.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.9)
-               vc.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
-    }
+   
       func applicationDocumentsDirectory() -> String {
       let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
            let basePath = paths.first ?? ""
