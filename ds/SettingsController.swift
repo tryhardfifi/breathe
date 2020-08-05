@@ -11,13 +11,19 @@ import Cocoa
 class SettingsController: NSViewController {
 
     
-    @IBOutlet weak var breathingInLabel: NSTextField!
-    @IBOutlet weak var firstHoldingLabel: NSTextField!
-    @IBOutlet weak var breathingOutLabel: NSTextField!
-    @IBOutlet weak var secondHoldingLabel: NSTextField!
     @IBOutlet weak var exerciseSelector: NSPopUpButton!
-    @IBOutlet weak var exerciseName: NSTextField!
     @IBOutlet weak var anchorSelector: NSPopUpButton!
+    var popoverView = NSPopover.init()
+
+    @IBAction func NewExerciseWasPressed(_ sender: NSButton) {
+        guard let vc = storyboard?.instantiateController(withIdentifier: "NewExerciseController") as? NewExerciseController else {
+            fatalError("Unable to find NewExerciseController in the storyboard")
+        }
+        popoverView = NSPopover()
+        popoverView.contentViewController = vc
+        popoverView.behavior = .transient
+        popoverView.show(relativeTo: sender.bounds, of: sender, preferredEdge: .maxY)
+    }
     
     @IBAction func exerciseSelectorWasUpdated(_ sender: NSPopUpButton) {
        let propertyList = self.readPropertyList() as NSMutableDictionary
@@ -40,17 +46,7 @@ class SettingsController: NSViewController {
         propertyList.write(toFile: filepath, atomically: true)
     }
     
-    @IBAction func createWasPressed(_ sender: NSButton) {
-        let propertyList = self.readPropertyList() as NSMutableDictionary
-        let exercises = propertyList["exercises"] as! NSMutableDictionary
-        let new_exercise = ["inflate": breathingInLabel.intValue,"deflate": breathingOutLabel.intValue, "hold_after_inflate": firstHoldingLabel.intValue, "hold_after_deflate": secondHoldingLabel.intValue]
-         exercises[exerciseName.stringValue] = new_exercise
-         propertyList["exercises"] = exercises
-         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
-         propertyList.write(toFile: filepath, atomically: true)
-        let keys = exercises as! [String:AnyObject]
-         keys.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
-    }
+   
     
     @IBAction func deleteWasPressed(_ sender: Any) {
         let propertyList = self.readPropertyList() as NSMutableDictionary
@@ -64,18 +60,7 @@ class SettingsController: NSViewController {
         newExercises.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
         
     }
-    @IBAction func breathingInWasUpdated(_ sender: NSStepper) {
-         breathingInLabel.stringValue = String(sender.integerValue)
-    }
-    @IBAction func firstHoldingWasUpdated(_ sender: NSStepper) {
-           firstHoldingLabel.stringValue = String(sender.integerValue)
-       }
-    @IBAction func breathingOutWasUpdated(_ sender: NSStepper) {
-          breathingOutLabel.stringValue = String(sender.integerValue)
-    }
-    @IBAction func secondHoldingWasUpdated(_ sender: NSStepper) {
-         secondHoldingLabel.stringValue = String(sender.integerValue)
-    }
+   
     
     func applicationDocumentsDirectory() -> String {
     let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
@@ -105,7 +90,7 @@ class SettingsController: NSViewController {
         exercises.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
         exerciseSelector.selectItem(withTitle: propertyList["exercise"] as! String)
     }
- 
+   
      
     override func viewDidAppear() {
         super.viewDidAppear()
