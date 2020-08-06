@@ -10,15 +10,17 @@ import Cocoa
 
 class SettingsController: NSViewController {
 
-    
     @IBOutlet weak var exerciseSelector: NSPopUpButton!
     @IBOutlet weak var anchorSelector: NSPopUpButton!
     var popoverView = NSPopover.init()
-
+   
+    
+  
     @IBAction func NewExerciseWasPressed(_ sender: NSButton) {
         guard let vc = storyboard?.instantiateController(withIdentifier: "NewExerciseController") as? NewExerciseController else {
             fatalError("Unable to find NewExerciseController in the storyboard")
         }
+        vc.delegate = self
         popoverView = NSPopover()
         popoverView.contentViewController = vc
         popoverView.behavior = .transient
@@ -26,17 +28,7 @@ class SettingsController: NSViewController {
     }
     
     @IBAction func exerciseSelectorWasUpdated(_ sender: NSPopUpButton) {
-       let propertyList = self.readPropertyList() as NSMutableDictionary
-       let exercises = propertyList["exercises"] as! NSMutableDictionary
-       let title = sender.selectedItem?.title
-       let exercise = exercises[title] as! NSMutableDictionary
-       propertyList["exercise"] = title
-       propertyList["inflate"] = exercise["inflate"]
-       propertyList["deflate"] = exercise["deflate"]
-       propertyList["hold_after_inflate"] = exercise["hold_after_inflate"]
-       propertyList["hold_after_deflate"] = exercise["hold_after_deflate"]
-       let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
-       propertyList.write(toFile: filepath, atomically: true)
+        self.updateBreathingConstants(exerciseTitle: sender.selectedItem?.title ?? "")
     }
     
     @IBAction func anchorWasUpdated(_ sender: NSPopUpButton) {
@@ -49,16 +41,26 @@ class SettingsController: NSViewController {
    
     
     @IBAction func deleteWasPressed(_ sender: Any) {
-        let propertyList = self.readPropertyList() as NSMutableDictionary
-        let exercises = propertyList["exercises"] as! NSMutableDictionary
-        exercises.removeObject(forKey: exerciseSelector.selectedItem?.title)
-        propertyList["exercises"] = exercises
-        let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
-        propertyList.write(toFile: filepath, atomically: true)
-        let newExercises = propertyList["exercises"] as! [String:AnyObject]
-        self.exerciseSelector.removeAllItems()
-        newExercises.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
-        
+      
+        if exerciseSelector.itemTitles.count > 1 {
+           let propertyList = self.readPropertyList() as NSMutableDictionary
+           let exercises = propertyList["exercises"] as! NSMutableDictionary
+           exercises.removeObject(forKey: exerciseSelector.selectedItem?.title)
+           propertyList["exercises"] = exercises
+           let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
+           propertyList.write(toFile: filepath, atomically: true)
+           let newExercises = propertyList["exercises"] as! [String:AnyObject]
+           self.exerciseSelector.removeAllItems()
+           newExercises.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
+           propertyList["exercise"] = exerciseSelector.itemTitle(at: 0)
+           exerciseSelector.selectItem(at: 0)
+           self.updateBreathingConstants(exerciseTitle: exerciseSelector.itemTitle(at: 0))
+        } else {
+           let alert = NSAlert()
+           alert.messageText = "Can't delete the last exercise"
+           alert.runModal()
+        }
+    
     }
    
     
@@ -67,7 +69,19 @@ class SettingsController: NSViewController {
          let basePath = paths.first ?? ""
          return basePath
      }
-
+    func updateBreathingConstants(exerciseTitle:String){
+        let propertyList = self.readPropertyList() as NSMutableDictionary
+        let exercises = propertyList["exercises"] as! NSMutableDictionary
+        let title = exerciseTitle
+        let exercise = exercises[title] as! NSMutableDictionary
+        propertyList["exercise"] = title
+        propertyList["inflate"] = exercise["inflate"]
+        propertyList["deflate"] = exercise["deflate"]
+        propertyList["hold_after_inflate"] = exercise["hold_after_inflate"]
+        propertyList["hold_after_deflate"] = exercise["hold_after_deflate"]
+        let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
+        propertyList.write(toFile: filepath, atomically: true)
+    }
     func readPropertyList()  -> NSMutableDictionary {
         var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
         var plistData: NSMutableDictionary = [:] //Our data
@@ -87,10 +101,22 @@ class SettingsController: NSViewController {
         super.viewDidLoad()
         let propertyList = self.readPropertyList()
         let exercises = propertyList["exercises"] as! [String:AnyObject]
+        let anchor = propertyList["anchor"] as! String
+        anchorSelector.selectItem(withTitle: anchor)
         exercises.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
         exerciseSelector.selectItem(withTitle: propertyList["exercise"] as! String)
+        //self.updateBreathingConstants(exerciseTitle: propertyList["exercise"] as! String)
     }
-   
+    
+    override func viewWillAppear() {
+       let propertyList = self.readPropertyList()
+       let exercises = propertyList["exercises"] as! [String:AnyObject]
+       exercises.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
+       exerciseSelector.selectItem(withTitle: propertyList["exercise"] as! String)
+       self.updateBreathingConstants(exerciseTitle: propertyList["exercise"] as! String)
+
+    }
+
      
     override func viewDidAppear() {
         super.viewDidAppear()

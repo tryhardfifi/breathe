@@ -120,26 +120,22 @@ class ViewController: NSViewController {
              origin.x += 20
              origin.y += 20
             self.coloredView.animator().setFrameOrigin(origin)
-             
             NSAnimationContext.beginGrouping()
             NSAnimationContext.current.duration = self_duration
             var size = self.coloredView.frame.size
             size.height *= 0.5
             size.width *= 0.5
             self.coloredView.animator().setFrameSize(size)
-            
             NSAnimationContext.endGrouping()
             NSAnimationContext.endGrouping()
         }, completionHandler:{
                 self.hold_after_deflate()
             })
-        
     }
   
    func hold_after_deflate(){
     self.view.window?.backgroundColor = NSColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.85)
     let duration = self.readPropertyList()
-
     var self_duration = duration["hold_after_deflate"] as! Double
     if self_duration == 0 {
                self_duration = 0.000000001
@@ -165,10 +161,7 @@ class ViewController: NSViewController {
                           self.inflate()
                    })
     }
- 
-
-
-   
+    
     override func viewDidAppear() {
         super.viewDidAppear()
         print("as")
@@ -185,7 +178,6 @@ class ViewController: NSViewController {
         switch anchor {
         case "Down + Left":
             self.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
-            
         case "Up + Left":
             self.view.window?.setFrameOrigin(NSPoint(x: 0,y:(NSScreen.main?.frame.height ?? 0)-200 ))
         case "Down + Right":

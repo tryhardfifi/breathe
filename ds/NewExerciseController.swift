@@ -14,7 +14,7 @@ class NewExerciseController: NSViewController {
     @IBOutlet weak var firstHoldingLabel: NSTextField!
     @IBOutlet weak var breathingOutLabel: NSTextField!
     @IBOutlet weak var secondHoldingLabel: NSTextField!
-     
+    weak var delegate: SettingsController!
     @IBOutlet weak var exerciseName: NSTextField!
     
     @IBAction func breathingInWasUpdated(_ sender: NSStepper) {
@@ -35,9 +35,15 @@ class NewExerciseController: NSViewController {
         let exercises = propertyList["exercises"] as! NSMutableDictionary
         let new_exercise = ["inflate": breathingInLabel.intValue,"deflate": breathingOutLabel.intValue, "hold_after_inflate": firstHoldingLabel.intValue, "hold_after_deflate": secondHoldingLabel.intValue]
         exercises[exerciseName.stringValue] = new_exercise
+        propertyList["inflate"] = breathingInLabel.intValue
+        propertyList["deflate"] = breathingOutLabel.intValue
+        propertyList["hold_after_inflate"] = firstHoldingLabel.intValue
+        propertyList["hold_after_deflate"] = secondHoldingLabel.intValue
         propertyList["exercises"] = exercises
         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
         propertyList.write(toFile: filepath, atomically: true)
+        self.delegate.viewDidLoad()
+        self.delegate.exerciseSelector.selectItem(withTitle: exerciseName.stringValue as! String)
         self.view.window?.performClose(sender)
     }
 
@@ -62,7 +68,6 @@ class NewExerciseController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.className)
-        // Do view setup here.
+        
     }
 }
