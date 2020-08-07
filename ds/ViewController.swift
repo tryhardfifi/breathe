@@ -44,21 +44,22 @@ class ViewController: NSViewController {
     
     func inflate(){
         let duration = self.readPropertyList()
+                let color = duration["inflate_color"] as! NSDictionary
+                self.view.window?.backgroundColor = NSColor.init(red: CGFloat(color["red"] as! NSNumber), green: CGFloat(color["green"] as! NSNumber), blue: CGFloat(color["blue"] as! NSNumber), alpha: 1)
         var self_duration = duration["inflate"] as! Double
         if self_duration == 0 {
             self_duration = 0.000000001
         }
         
         self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.5, blue: 0.1, alpha: 0.85)
+
         NSAnimationContext.runAnimationGroup({_ in
          NSAnimationContext.beginGrouping()
              NSAnimationContext.current.duration = self_duration
              var origin = self.coloredView.frame.origin
              origin.x -= 20
              origin.y -= 20
-
              self.coloredView.animator().setFrameOrigin(origin)
-             
             NSAnimationContext.beginGrouping()
             NSAnimationContext.current.duration = self_duration
             var size = self.coloredView.frame.size
@@ -76,8 +77,9 @@ class ViewController: NSViewController {
     }
 
     func hold_after_inflate(){
-        self.view.window?.backgroundColor = NSColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.85)
-        let duration = self.readPropertyList()
+          let duration = self.readPropertyList()
+                let color = duration["hold_color"] as! NSDictionary
+                self.view.window?.backgroundColor = NSColor.init(red: CGFloat(color["red"] as! NSNumber), green: CGFloat(color["green"] as! NSNumber), blue: CGFloat(color["blue"] as! NSNumber), alpha: 1)
 
         var self_duration = duration["hold_after_inflate"] as! Double
         if self_duration == 0 {
@@ -108,7 +110,11 @@ class ViewController: NSViewController {
     
     func deflate(){
         let duration = self.readPropertyList()
-        self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.5, alpha: 0.85)
+        print(duration["deflate_color"])
+
+        let color = duration["deflate_color"] as! NSDictionary
+        self.view.window?.backgroundColor = NSColor.init(red: CGFloat(color["red"] as! NSNumber), green: CGFloat(color["green"] as! NSNumber), blue: CGFloat(color["blue"] as! NSNumber), alpha: 1)
+        
         var self_duration = duration["deflate"] as! Double
         if self_duration == 0 {
                    self_duration = 0.000000001
@@ -134,8 +140,9 @@ class ViewController: NSViewController {
     }
   
    func hold_after_deflate(){
-    self.view.window?.backgroundColor = NSColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.85)
     let duration = self.readPropertyList()
+    let color = duration["hold_color"] as! NSDictionary
+    self.view.window?.backgroundColor = NSColor.init(red: CGFloat(color["red"] as! NSNumber), green: CGFloat(color["green"] as! NSNumber), blue: CGFloat(color["blue"] as! NSNumber), alpha: 1)
     var self_duration = duration["hold_after_deflate"] as! Double
     if self_duration == 0 {
                self_duration = 0.000000001

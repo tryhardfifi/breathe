@@ -9,14 +9,39 @@
 import Cocoa
 
 class SettingsController: NSViewController {
-
+    @IBOutlet weak var breathingInColor: NSColorWell!
+    @IBOutlet weak var firstHoldingColor: NSColorWell!
+    @IBOutlet weak var breathingOutColor: NSColorWell!
+    @IBOutlet weak var secondHoldingColor: NSColorWell!
+    
     @IBOutlet weak var exerciseSelector: NSPopUpButton!
     @IBOutlet weak var anchorSelector: NSPopUpButton!
     var popoverView = NSPopover.init()
    
     
+    @IBAction func breathingInColorWasUpdated(_ sender: NSColorWell) {
+        self.set_color(string: "inflate_color", color: sender.color)
+    }
+    @IBAction func firstHoldingColorWasUpdated(_ sender: NSColorWell) {
+        self.set_color(string: "hold_color", color: sender.color)
+    }
+    @IBAction func breathingOutColorWasUpdated(_ sender: NSColorWell) {
+        self.set_color(string: "deflate_color", color: sender.color)
+    }
+  
     @IBAction func closeWasPressed(_ sender: Any) {
         self.view.window?.close()
+    }
+    
+    func set_color(string:String,color:NSColor){
+        let propertyList = self.readPropertyList() as NSMutableDictionary
+        let colorArray = propertyList[string] as! NSMutableDictionary
+        colorArray["red"] = color.redComponent
+        colorArray["green"] = color.greenComponent
+        colorArray["blue"] = color.blueComponent
+        propertyList[string] = colorArray
+        let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
+        propertyList.write(toFile: filepath, atomically: true)
     }
     
     @IBAction func NewExerciseWasPressed(_ sender: NSButton) {
@@ -105,6 +130,15 @@ class SettingsController: NSViewController {
         let propertyList = self.readPropertyList()
         let exercises = propertyList["exercises"] as! [String:AnyObject]
         let anchor = propertyList["anchor"] as! String
+        let breathingInColorArray = propertyList["inflate_color"] as! NSDictionary
+        let firstHoldingColorArray = propertyList["hold_color"] as! NSDictionary
+        let breathingOutColorArray = propertyList["deflate_color"] as! NSDictionary
+
+        breathingInColor.color = NSColor.init(red: CGFloat(breathingInColorArray["red"] as! NSNumber), green: CGFloat(breathingInColorArray["green"] as! NSNumber), blue: CGFloat(breathingInColorArray["blue"] as! NSNumber), alpha: 1)
+        firstHoldingColor.color = NSColor.init(red: CGFloat(firstHoldingColorArray["red"] as! NSNumber), green: CGFloat(firstHoldingColorArray["green"] as! NSNumber), blue: CGFloat(firstHoldingColorArray["blue"] as! NSNumber), alpha: 1)
+        breathingOutColor.color = NSColor.init(red: CGFloat(breathingOutColorArray["red"] as! NSNumber), green: CGFloat(breathingOutColorArray["green"] as! NSNumber), blue: CGFloat(breathingOutColorArray["blue"] as! NSNumber), alpha: 1)
+        
+       
         anchorSelector.selectItem(withTitle: anchor)
         exercises.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
         exerciseSelector.selectItem(withTitle: propertyList["exercise"] as! String)

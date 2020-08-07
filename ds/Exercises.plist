@@ -39,5 +39,32 @@
 	<integer>4</integer>
 	<key>exercise</key>
 	<string>4-4-4-4</string>
+	<key>inflate_color</key>
+	<dict>
+		<key>red</key>
+		<real>0.2274509803921569</real>
+		<key>green</key>
+		<real>0.4462255836</real>
+		<key>blue</key>
+		<real>0.1738817134311687</real>
+	</dict>
+	<key>hold_color</key>
+	<dict>
+		<key>red</key>
+		<real>0.2078431372549019</real>
+		<key>green</key>
+		<real>0.2078401446</real>
+		<key>blue</key>
+		<real>0.2078432739</real>
+	</dict>
+	<key>deflate_color</key>
+	<dict>
+		<key>red</key>
+		<real>0.1294117647058823</real>
+		<key>green</key>
+		<real>0.1294117647058823</real>
+		<key>blue</key>
+		<real>0.447086215</real>
+	</dict>
 </dict>
 </plist>

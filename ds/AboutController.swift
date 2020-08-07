@@ -15,8 +15,6 @@ class AboutController: NSViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do view setup here.
     }
     override func viewDidAppear() {
           super.viewDidAppear()
