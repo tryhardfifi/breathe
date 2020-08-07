@@ -8,9 +8,11 @@
 
 import Cocoa
 
-class StatusMenuController: NSObject {
+class StatusMenuController: NSObject, NSMenuDelegate {
     
     @IBOutlet weak var statusMenu: NSMenu!
+    
+
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     var storyBoard = NSStoryboard.init()
@@ -33,7 +35,9 @@ class StatusMenuController: NSObject {
             }
             return plistData
         }
-        
+    
+
+    
     func applicationDocumentsDirectory() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         let basePath = paths.first ?? ""
@@ -46,8 +50,14 @@ class StatusMenuController: NSObject {
        statusItem.button?.target = self
        statusMenu.autoenablesItems = false
        statusItem.menu = statusMenu
+        statusMenu.delegate = self
     }
-        
+   
+        func menuWillOpen(_ menu: NSMenu) {
+
+         
+
+    }
   
     
 

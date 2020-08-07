@@ -10,8 +10,12 @@ import Cocoa
 
 class AboutController: NSViewController {
 
+    @IBAction func closeWasPressed(_ sender: NSButton) {
+        self.view.window?.close()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do view setup here.
     }
     override func viewDidAppear() {
@@ -23,6 +27,8 @@ class AboutController: NSViewController {
            self.view.window?.isOpaque = false
            self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
            self.view.window?.setFrameOrigin(NSPoint(x:((NSScreen.main?.frame.width ?? 0)/2) - 200,y:((NSScreen.main?.frame.height ?? 0)/2) - 200))
+           self.view.window?.styleMask.remove(.titled)
+
 
       }
     

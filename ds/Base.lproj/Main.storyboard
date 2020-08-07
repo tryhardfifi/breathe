@@ -28,12 +28,23 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kUU-CV-qMv">
+                                <rect key="frame" x="262" y="13" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4uZ-Pf-G1B">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="closeWasPressed:" target="AOl-xZ-yAY" id="c8Z-Qm-SIJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                 </viewController>
                 <customObject id="OYJ-1H-INx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="572.5" y="-257"/>
+            <point key="canvasLocation" x="-5" y="-401"/>
         </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
@@ -44,23 +55,23 @@
                         <menuItem title="About breathe" id="rN2-99-wzt">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="aboutWasPressed:" target="tad-so-7G8" id="y1Z-0p-ofq"/>
-                                <segue destination="AOl-xZ-yAY" kind="show" id="lVW-rf-TWe"/>
+                                <action selector="change:" target="tad-so-7G8" id="Pg5-3L-VIr"/>
+                                <segue destination="AOl-xZ-yAY" kind="modal" id="ca3-pf-qxW"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Launch window" id="NlA-m8-pLR">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="lauchWindowWasPressed:" target="tad-so-7G8" id="C7t-Ma-g91"/>
-                                <segue destination="3WX-39-pDo" kind="show" id="xrk-cf-M92"/>
+                                <action selector="launchWindowWasPressed:" target="tad-so-7G8" id="VRM-3L-aJF"/>
+                                <segue destination="3WX-39-pDo" kind="modal" id="uMH-7D-gop"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="g5L-tE-dpx"/>
                         <menuItem title="Preferences" id="DsF-Ep-kRd">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="preferencesWasPressed:" target="tad-so-7G8" id="VnI-DA-i3Y"/>
-                                <segue destination="SUN-0T-fHH" kind="show" id="Jgi-XX-wmn"/>
+                                <action selector="change:" target="tad-so-7G8" id="jXq-sL-BOV"/>
+                                <segue destination="SUN-0T-fHH" kind="modal" id="E8U-U5-yQn"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="Pkd-tg-tiF"/>
@@ -107,7 +118,7 @@
                 </viewController>
                 <customObject id="koA-Xa-sZG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-110" y="75"/>
+            <point key="canvasLocation" x="-120" y="181"/>
         </scene>
         <!--Settings Controller-->
         <scene sceneID="Y3F-OS-NH8">
@@ -115,11 +126,11 @@
                 <customObject id="35J-0y-qXK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="SettingsController" id="SUN-0T-fHH" customClass="SettingsController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Cym-Bi-Pb6">
-                        <rect key="frame" x="0.0" y="0.0" width="299" height="236"/>
+                        <rect key="frame" x="0.0" y="0.0" width="299" height="292"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JUg-9a-L08">
-                                <rect key="frame" x="18" y="87" width="140" height="25"/>
+                                <rect key="frame" x="18" y="143" width="140" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="vDY-aP-KMB">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -131,11 +142,11 @@
                                 </connections>
                             </popUpButton>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="xD2-oG-Tvi">
-                                <rect key="frame" x="-6" y="64" width="335" height="5"/>
+                                <rect key="frame" x="-6" y="120" width="335" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2V1-kC-RYy">
-                                <rect key="frame" x="18" y="124" width="96" height="16"/>
+                                <rect key="frame" x="18" y="180" width="96" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Select exercise" id="z0C-By-m0w">
                                     <font key="font" metaFont="system"/>
@@ -144,7 +155,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A1H-1c-vVu">
-                                <rect key="frame" x="204" y="83" width="81" height="32"/>
+                                <rect key="frame" x="204" y="139" width="81" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hoh-z2-SS3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -155,11 +166,11 @@
                                 </connections>
                             </button>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="bkZ-oT-peh">
-                                <rect key="frame" x="-6" y="151" width="335" height="5"/>
+                                <rect key="frame" x="-6" y="207" width="335" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NoJ-QY-G4q">
-                                <rect key="frame" x="18" y="209" width="107" height="16"/>
+                                <rect key="frame" x="18" y="265" width="107" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Select anchoring" id="2LU-uJ-iXN">
                                     <font key="font" metaFont="system"/>
@@ -168,7 +179,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0FD-0r-7Dx">
-                                <rect key="frame" x="18" y="172" width="140" height="25"/>
+                                <rect key="frame" x="18" y="228" width="140" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Down + Left" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8We-RM-6MY" id="6fi-TT-Har">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -187,7 +198,7 @@
                                 </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I33-3y-AKT">
-                                <rect key="frame" x="14" y="16" width="163" height="32"/>
+                                <rect key="frame" x="14" y="72" width="163" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Create new exercise" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dOu-ZN-eYb">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -195,6 +206,17 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="NewExerciseWasPressed:" target="SUN-0T-fHH" id="ZjX-6T-onS"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oyd-Xq-DrI">
+                                <rect key="frame" x="204" y="13" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8qu-bu-kxw">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="closeWasPressed:" target="SUN-0T-fHH" id="0CP-sR-O6x"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -207,7 +229,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-390.5" y="93"/>
+            <point key="canvasLocation" x="-433.5" y="87"/>
         </scene>
         <!--New Exercise Controller-->
         <scene sceneID="YG4-bg-WPy">
@@ -372,7 +394,7 @@
                 </viewController>
                 <customObject id="btg-A7-vPJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-369.5" y="-295"/>
+            <point key="canvasLocation" x="-432" y="-398"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

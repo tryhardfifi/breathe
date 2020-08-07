@@ -15,7 +15,10 @@ class SettingsController: NSViewController {
     var popoverView = NSPopover.init()
    
     
-  
+    @IBAction func closeWasPressed(_ sender: Any) {
+        self.view.window?.close()
+    }
+    
     @IBAction func NewExerciseWasPressed(_ sender: NSButton) {
         guard let vc = storyboard?.instantiateController(withIdentifier: "NewExerciseController") as? NewExerciseController else {
             fatalError("Unable to find NewExerciseController in the storyboard")
@@ -127,6 +130,8 @@ class SettingsController: NSViewController {
         self.view.window?.isOpaque = false
         self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
         self.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
+        self.view.window?.titleVisibility = .hidden
+        self.view.window?.styleMask.remove(.titled)
         let propertyList = self.readPropertyList() as NSDictionary
         let anchor = propertyList["anchor"] as! String
         self.view.window?.setFrameOrigin(NSPoint(x:((NSScreen.main?.frame.width ?? 0)/2) - 200,y:((NSScreen.main?.frame.height ?? 0)/2) - 200))

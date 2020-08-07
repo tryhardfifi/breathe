@@ -161,11 +161,11 @@ class ViewController: NSViewController {
                           self.inflate()
                    })
     }
-    
+
     override func viewDidAppear() {
         super.viewDidAppear()
-        print("as")
-        self.view.window?.level = .floating
+
+        //vc.view.window?.level = .floating
         self.view.window?.title = "breathe💨"
         self.view.window?.titlebarAppearsTransparent = true
         self.view.window?.styleMask.remove(.resizable)
@@ -188,15 +188,14 @@ class ViewController: NSViewController {
             self.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
         }
 
-
     }
-    
-   
-    override var representedObject: Any? {
-        didSet {
-        }
-    }
-    
-
+    override func dismiss (_ sender: Any?)
+       {
+            if let wc = self.view.window?.windowController
+            {
+                 wc.dismissController (sender)
+            }
+       }
+           
 
 }
