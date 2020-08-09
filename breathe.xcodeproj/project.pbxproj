@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80393A2724E03C8600F074B2 /* ColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80393A2524E03C8600F074B2 /* ColorController.swift */; };
 		8059B35124D95D620082B2B3 /* Exercises.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8059B35024D95D620082B2B3 /* Exercises.plist */; };
 		8059B35524DAC91E0082B2B3 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8059B35424DAC91E0082B2B3 /* StatusMenuController.swift */; };
 		80856E6B24D4247A000CA7E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80856E6A24D4247A000CA7E6 /* AppDelegate.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		80393A2524E03C8600F074B2 /* ColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorController.swift; sourceTree = "<group>"; };
 		8059B35024D95D620082B2B3 /* Exercises.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Exercises.plist; sourceTree = "<group>"; };
 		8059B35424DAC91E0082B2B3 /* StatusMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 		80856E6724D4247A000CA7E6 /* breathe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = breathe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +116,7 @@
 				80856E6A24D4247A000CA7E6 /* AppDelegate.swift */,
 				80D77BE024D72375000D7338 /* SettingsController.swift */,
 				80904B7624DAFF75008D7013 /* NewExerciseController.swift */,
+				80393A2524E03C8600F074B2 /* ColorController.swift */,
 				80D77BE224D73447000D7338 /* GraphView.swift */,
 				80856E6E24D4247D000CA7E6 /* Assets.xcassets */,
 				80856E7024D4247D000CA7E6 /* Main.storyboard */,
@@ -276,6 +279,7 @@
 				80D77BE124D72375000D7338 /* SettingsController.swift in Sources */,
 				80856E6D24D4247A000CA7E6 /* ViewController.swift in Sources */,
 				8059B35524DAC91E0082B2B3 /* StatusMenuController.swift in Sources */,
+				80393A2724E03C8600F074B2 /* ColorController.swift in Sources */,
 				80856E6B24D4247A000CA7E6 /* AppDelegate.swift in Sources */,
 				80D77BE324D73447000D7338 /* GraphView.swift in Sources */,
 				80904B7824DAFF75008D7013 /* NewExerciseController.swift in Sources */,

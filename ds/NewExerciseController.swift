@@ -45,6 +45,8 @@ class NewExerciseController: NSViewController {
         self.delegate.viewDidLoad()
         self.delegate.exerciseSelector.selectItem(withTitle: exerciseName.stringValue as! String)
         self.view.window?.performClose(sender)
+        self.view.window?.close()
+
     }
 
    func applicationDocumentsDirectory() -> String {

@@ -10,7 +10,6 @@ import Cocoa
 
 class StatusMenuController: NSObject, NSMenuDelegate {
     
-    @IBOutlet weak var statusMenu: NSMenu!
     
 
     
@@ -48,17 +47,38 @@ class StatusMenuController: NSObject, NSMenuDelegate {
        self.storyBoard = NSStoryboard(name: "Main", bundle: nil)
        statusItem.button?.title = "💨"
        statusItem.button?.target = self
-       statusMenu.autoenablesItems = false
-       statusItem.menu = statusMenu
-        statusMenu.delegate = self
+       statusItem.button?.target = self
+       statusItem.button?.action = #selector(showSettings)
     }
-   
-        func menuWillOpen(_ menu: NSMenu) {
+      
+      
+      func applicationWillTerminate(_ aNotification: Notification) {
+          // Insert code here to tear down your application
+      }
+      
+      @objc func showSettings(){
+        for i in 0...NSApplication.shared.windows.count-1{
+            if NSApplication.shared.windows[i].title == "breathe💨"{
+                NSApplication.shared.windows[i].performClose(self)
+            }
+        }
+            
 
-         
+                    
+          let storyboard = NSStoryboard(name: "Main", bundle: nil)
+          guard let vc = storyboard.instantiateController(withIdentifier: "SettingsController") as? SettingsController else {
+              fatalError("Unable to find SettingsController in the storyboard")
+          }
+          guard let button = statusItem.button else {
+              fatalError("Unable to get button")
+          }
+          let popoverView = NSPopover()
+          popoverView.contentViewController = vc
+          popoverView.behavior = .transient
+          let rect = NSRect(x: -20, y: 0, width: 100, height: 100)
+          popoverView.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
 
-    }
-  
+      }
     
 
     }

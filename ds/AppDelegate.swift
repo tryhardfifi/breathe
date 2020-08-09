@@ -41,7 +41,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let a = self.readPropertyList() as NSDictionary
             a.write(toFile: filepath, atomically: true)
        }
-
+                  let storyboard = NSStoryboard(name: "Main", bundle: nil)
+                  guard let vc = storyboard.instantiateController(withIdentifier: "ViewController") as? ViewController else {
+                      fatalError("Unable to find ViewController in the storyboard")
+                  }
+                
+                 
+                  vc.presentAsModalWindow(vc)
+              
     }
 
   

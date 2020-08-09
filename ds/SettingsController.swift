@@ -9,39 +9,27 @@
 import Cocoa
 
 class SettingsController: NSViewController {
-    @IBOutlet weak var breathingInColor: NSColorWell!
-    @IBOutlet weak var firstHoldingColor: NSColorWell!
-    @IBOutlet weak var breathingOutColor: NSColorWell!
-    @IBOutlet weak var secondHoldingColor: NSColorWell!
     
     @IBOutlet weak var exerciseSelector: NSPopUpButton!
     @IBOutlet weak var anchorSelector: NSPopUpButton!
     var popoverView = NSPopover.init()
    
     
-    @IBAction func breathingInColorWasUpdated(_ sender: NSColorWell) {
-        self.set_color(string: "inflate_color", color: sender.color)
-    }
-    @IBAction func firstHoldingColorWasUpdated(_ sender: NSColorWell) {
-        self.set_color(string: "hold_color", color: sender.color)
-    }
-    @IBAction func breathingOutColorWasUpdated(_ sender: NSColorWell) {
-        self.set_color(string: "deflate_color", color: sender.color)
-    }
-  
+
     @IBAction func closeWasPressed(_ sender: Any) {
         self.view.window?.close()
     }
     
-    func set_color(string:String,color:NSColor){
-        let propertyList = self.readPropertyList() as NSMutableDictionary
-        let colorArray = propertyList[string] as! NSMutableDictionary
-        colorArray["red"] = color.redComponent
-        colorArray["green"] = color.greenComponent
-        colorArray["blue"] = color.blueComponent
-        propertyList[string] = colorArray
-        let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
-        propertyList.write(toFile: filepath, atomically: true)
+   
+    @IBAction func aboutBreatheWasPressed(_ sender: NSButton) {
+        guard let vc = storyboard?.instantiateController(withIdentifier: "AboutController") as? AboutController else {
+            fatalError("Unable to find AboutController in the storyboard")
+        }
+        
+        popoverView = NSPopover()
+        popoverView.contentViewController = vc
+        popoverView.behavior = .transient
+        popoverView.show(relativeTo: sender.bounds, of: sender, preferredEdge: .maxY)
     }
     
     @IBAction func NewExerciseWasPressed(_ sender: NSButton) {
@@ -49,6 +37,19 @@ class SettingsController: NSViewController {
             fatalError("Unable to find NewExerciseController in the storyboard")
         }
         vc.delegate = self
+        
+        popoverView = NSPopover()
+        popoverView.contentViewController = vc
+        popoverView.behavior = .transient
+        popoverView.show(relativeTo: sender.bounds, of: sender, preferredEdge: .maxY)
+    }
+  
+    @IBAction func adjustColorsWasPressed(_ sender: NSButton) {
+        print("fs")
+        guard let vc = storyboard?.instantiateController(withIdentifier: "ColorController") as? ColorController else {
+            fatalError("Unable to find ColorController in the storyboard")
+        }
+        
         popoverView = NSPopover()
         popoverView.contentViewController = vc
         popoverView.behavior = .transient
@@ -133,11 +134,6 @@ class SettingsController: NSViewController {
         let breathingInColorArray = propertyList["inflate_color"] as! NSDictionary
         let firstHoldingColorArray = propertyList["hold_color"] as! NSDictionary
         let breathingOutColorArray = propertyList["deflate_color"] as! NSDictionary
-
-        breathingInColor.color = NSColor.init(red: CGFloat(breathingInColorArray["red"] as! NSNumber), green: CGFloat(breathingInColorArray["green"] as! NSNumber), blue: CGFloat(breathingInColorArray["blue"] as! NSNumber), alpha: 1)
-        firstHoldingColor.color = NSColor.init(red: CGFloat(firstHoldingColorArray["red"] as! NSNumber), green: CGFloat(firstHoldingColorArray["green"] as! NSNumber), blue: CGFloat(firstHoldingColorArray["blue"] as! NSNumber), alpha: 1)
-        breathingOutColor.color = NSColor.init(red: CGFloat(breathingOutColorArray["red"] as! NSNumber), green: CGFloat(breathingOutColorArray["green"] as! NSNumber), blue: CGFloat(breathingOutColorArray["blue"] as! NSNumber), alpha: 1)
-        
        
         anchorSelector.selectItem(withTitle: anchor)
         exercises.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
@@ -163,12 +159,8 @@ class SettingsController: NSViewController {
         self.view.window?.styleMask.remove(.resizable)
         self.view.window?.isOpaque = false
         self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
-        self.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
         self.view.window?.titleVisibility = .hidden
         self.view.window?.styleMask.remove(.titled)
-        let propertyList = self.readPropertyList() as NSDictionary
-        let anchor = propertyList["anchor"] as! String
-        self.view.window?.setFrameOrigin(NSPoint(x:((NSScreen.main?.frame.width ?? 0)/2) - 200,y:((NSScreen.main?.frame.height ?? 0)/2) - 200))
        
     }
    

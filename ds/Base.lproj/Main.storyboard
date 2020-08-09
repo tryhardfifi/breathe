@@ -9,7 +9,7 @@
         <!--About-->
         <scene sceneID="phu-ci-7aA">
             <objects>
-                <viewController title="About" storyboardIdentifier="AboutWindow" id="AOl-xZ-yAY" customClass="AboutController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="About" storyboardIdentifier="AboutController" id="AOl-xZ-yAY" customClass="AboutController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="GqX-nm-Jzi">
                         <rect key="frame" x="0.0" y="0.0" width="357" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -49,52 +49,16 @@
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="breathe" customModuleProvider="target"/>
-                <menu id="YT7-Ma-SBk">
-                    <items>
-                        <menuItem title="About breathe" id="rN2-99-wzt">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="change:" target="tad-so-7G8" id="Pg5-3L-VIr"/>
-                                <segue destination="AOl-xZ-yAY" kind="modal" id="ca3-pf-qxW"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="Launch window" id="NlA-m8-pLR">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="launchWindowWasPressed:" target="tad-so-7G8" id="VRM-3L-aJF"/>
-                                <segue destination="3WX-39-pDo" kind="modal" id="uMH-7D-gop"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem isSeparatorItem="YES" id="g5L-tE-dpx"/>
-                        <menuItem title="Preferences" id="DsF-Ep-kRd">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="change:" target="tad-so-7G8" id="jXq-sL-BOV"/>
-                                <segue destination="SUN-0T-fHH" kind="modal" id="E8U-U5-yQn"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem isSeparatorItem="YES" id="Pkd-tg-tiF"/>
-                        <menuItem title="Quit" keyEquivalent="q" id="Kig-Ns-SIU">
-                            <connections>
-                                <action selector="quitWasPressed:" target="tad-so-7G8" id="U90-jQ-Jgk"/>
-                            </connections>
-                        </menuItem>
-                    </items>
-                </menu>
-                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+                <customObject id="tad-so-7G8" customClass="StatusMenuController" customModule="breathe" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="breathe" customModuleProvider="target"/>
+                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6"/>
                     <connections>
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="tad-so-7G8" customClass="StatusMenuController" customModule="breathe" customModuleProvider="target">
-                    <connections>
-                        <outlet property="statusMenu" destination="YT7-Ma-SBk" id="ydG-mN-eyN"/>
-                    </connections>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
@@ -118,7 +82,7 @@
                 </viewController>
                 <customObject id="koA-Xa-sZG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-120" y="181"/>
+            <point key="canvasLocation" x="-43" y="192"/>
         </scene>
         <!--Settings Controller-->
         <scene sceneID="Y3F-OS-NH8">
@@ -126,11 +90,11 @@
                 <customObject id="35J-0y-qXK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="SettingsController" id="SUN-0T-fHH" customClass="SettingsController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Cym-Bi-Pb6">
-                        <rect key="frame" x="0.0" y="0.0" width="313" height="404"/>
+                        <rect key="frame" x="0.0" y="0.0" width="329" height="461"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JUg-9a-L08">
-                                <rect key="frame" x="18" y="255" width="140" height="25"/>
+                                <rect key="frame" x="18" y="247" width="140" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="vDY-aP-KMB">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -142,11 +106,11 @@
                                 </connections>
                             </popUpButton>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="xD2-oG-Tvi">
-                                <rect key="frame" x="-6" y="232" width="335" height="5"/>
+                                <rect key="frame" x="-6" y="224" width="335" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2V1-kC-RYy">
-                                <rect key="frame" x="18" y="292" width="96" height="16"/>
+                                <rect key="frame" x="18" y="284" width="96" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Select exercise" id="z0C-By-m0w">
                                     <font key="font" metaFont="system"/>
@@ -155,7 +119,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A1H-1c-vVu">
-                                <rect key="frame" x="190" y="251" width="81" height="32"/>
+                                <rect key="frame" x="192" y="243" width="123" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hoh-z2-SS3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -166,11 +130,15 @@
                                 </connections>
                             </button>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="bkZ-oT-peh">
-                                <rect key="frame" x="-6" y="319" width="335" height="5"/>
+                                <rect key="frame" x="-6" y="311" width="335" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="k8V-wO-bRZ">
+                                <rect key="frame" x="-1" y="397" width="335" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NoJ-QY-G4q">
-                                <rect key="frame" x="18" y="377" width="107" height="16"/>
+                                <rect key="frame" x="18" y="369" width="107" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Select anchoring" id="2LU-uJ-iXN">
                                     <font key="font" metaFont="system"/>
@@ -179,7 +147,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0FD-0r-7Dx">
-                                <rect key="frame" x="18" y="340" width="140" height="25"/>
+                                <rect key="frame" x="18" y="332" width="140" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Down + Left" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8We-RM-6MY" id="6fi-TT-Har">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -198,7 +166,7 @@
                                 </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I33-3y-AKT">
-                                <rect key="frame" x="14" y="184" width="163" height="32"/>
+                                <rect key="frame" x="14" y="178" width="163" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Create new exercise" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dOu-ZN-eYb">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -208,86 +176,81 @@
                                     <action selector="NewExerciseWasPressed:" target="SUN-0T-fHH" id="ZjX-6T-onS"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPa-mk-Olc">
+                                <rect key="frame" x="14" y="116" width="163" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Adjust colors" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LLa-Ca-HzW">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="adjustColorsWasPressed:" target="SUN-0T-fHH" id="G9I-ag-tUD"/>
+                                </connections>
+                            </button>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="jhH-9d-aoc">
-                                <rect key="frame" x="-1" y="167" width="335" height="5"/>
+                                <rect key="frame" x="-1" y="162" width="335" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oyd-Xq-DrI">
-                                <rect key="frame" x="218" y="13" width="81" height="32"/>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="BS6-Ee-DuX">
+                                <rect key="frame" x="-1" y="100" width="335" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8qu-bu-kxw">
+                            </box>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q4u-6v-lgY">
+                                <rect key="frame" x="14" y="54" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Apc-7K-naU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="closeWasPressed:" target="SUN-0T-fHH" id="HfS-so-vgQ"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xaw-ID-mMM">
+                                <rect key="frame" x="107" y="20" width="115" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="bevel" title="About breathe" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="na4-qN-obg">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="aboutBreatheWasPressed:" target="SUN-0T-fHH" id="XhY-mP-jX6"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oyd-Xq-DrI">
+                                <rect key="frame" x="192" y="48" width="123" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Open window" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8qu-bu-kxw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="closeWasPressed:" target="SUN-0T-fHH" id="0CP-sR-O6x"/>
+                                    <segue destination="3WX-39-pDo" kind="modal" id="dZz-Me-lyd"/>
                                 </connections>
                             </button>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tBm-Q7-Wsd">
-                                <rect key="frame" x="120" y="126" width="44" height="23"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dU9-yA-JV4">
+                                <rect key="frame" x="192" y="413" width="123" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.23086366059999999" green="0.44622558359999998" blue="0.17248377200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="breathingInColorWasUpdated:" target="SUN-0T-fHH" id="U8V-wN-E85"/>
-                                </connections>
-                            </colorWell>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gnu-xz-rQI">
-                                <rect key="frame" x="18" y="130" width="77" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Breathing in" id="cu5-IN-Ce8">
+                                <buttonCell key="cell" type="push" title="Quit breathe" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Yp4-fb-jWL">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kc2-C7-zqR">
-                                <rect key="frame" x="120" y="59" width="44" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.1225822344" green="0.12788754699999999" blue="0.44708621500000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </buttonCell>
                                 <connections>
-                                    <action selector="breathingOutColorWasUpdated:" target="SUN-0T-fHH" id="Y48-Ye-pwD"/>
+                                    <action selector="deleteWasPressed:" target="SUN-0T-fHH" id="J01-Uf-Crh"/>
                                 </connections>
-                            </colorWell>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAj-SG-uV1">
-                                <rect key="frame" x="19" y="63" width="86" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Breathing out" id="WO3-7X-vFn">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OdA-Yo-ESp">
-                                <rect key="frame" x="120" y="93" width="44" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.20784479380000001" green="0.2078401446" blue="0.20784327389999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="firstHoldingColorWasUpdated:" target="SUN-0T-fHH" id="DFS-S0-f0f"/>
-                                </connections>
-                            </colorWell>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GkN-M1-q2F">
-                                <rect key="frame" x="19" y="97" width="51" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Holding" id="Dwp-Kg-jDF">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="anchorSelector" destination="0FD-0r-7Dx" id="g6n-d1-MoR"/>
                         <outlet property="anchorWasUpdated" destination="0FD-0r-7Dx" id="5nd-8L-cZD"/>
-                        <outlet property="breathingInColor" destination="tBm-Q7-Wsd" id="Bbf-0w-My9"/>
-                        <outlet property="breathingOutColor" destination="kc2-C7-zqR" id="qbw-mp-pij"/>
                         <outlet property="deleteWasPressed" destination="A1H-1c-vVu" id="sxj-CL-taQ"/>
                         <outlet property="exerciseSelector" destination="JUg-9a-L08" id="sgu-UO-d7s"/>
-                        <outlet property="firstHoldingColor" destination="OdA-Yo-ESp" id="6Qg-73-rHi"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-426.5" y="143"/>
+            <point key="canvasLocation" x="-418.5" y="171.5"/>
         </scene>
         <!--New Exercise Controller-->
         <scene sceneID="YG4-bg-WPy">
@@ -306,7 +269,6 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="createWasPressed:" target="12h-pI-qHg" id="wMB-L6-XpF"/>
-                                    <segue destination="SUN-0T-fHH" kind="custom" destinationCreationSelector="createWasPressed:" id="nJS-X1-rcb"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ni-JS-FMb">
@@ -452,10 +414,89 @@
                 </viewController>
                 <customObject id="btg-A7-vPJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-432" y="-398"/>
+            <point key="canvasLocation" x="-433" y="-423"/>
+        </scene>
+        <!--Color Controller-->
+        <scene sceneID="9b7-rs-I04">
+            <objects>
+                <viewController storyboardIdentifier="ColorController" id="Lpx-Ie-tlb" customClass="ColorController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Faz-iS-J40">
+                        <rect key="frame" x="0.0" y="0.0" width="212" height="176"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <colorWell fixedFrame="YES" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t83-js-unm">
+                                <rect key="frame" x="120" y="133" width="44" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.23086366059999999" green="0.44622558359999998" blue="0.17248377200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="breathingInColorWasUpdated:" target="Lpx-Ie-tlb" id="YBr-1b-YSq"/>
+                                </connections>
+                            </colorWell>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y2i-Fn-5Xi">
+                                <rect key="frame" x="18" y="137" width="77" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Breathing in" id="aby-uR-VvD">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j62-0q-GIl">
+                                <rect key="frame" x="120" y="66" width="44" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.1225822344" green="0.12788754699999999" blue="0.44708621500000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="breathingOutColorWasUpdated:" target="Lpx-Ie-tlb" id="bHe-dD-gkx"/>
+                                </connections>
+                            </colorWell>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Qo-gs-fbn">
+                                <rect key="frame" x="19" y="70" width="86" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Breathing out" id="SGd-8Z-Ppj">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4o4-RZ-g2k">
+                                <rect key="frame" x="120" y="100" width="44" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.20784479380000001" green="0.2078401446" blue="0.20784327389999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="firstHoldingColorWasUpdated:" target="Lpx-Ie-tlb" id="qUG-n7-AK9"/>
+                                </connections>
+                            </colorWell>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="86W-VV-iEf">
+                                <rect key="frame" x="19" y="104" width="51" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Holding" id="Yvz-cg-S8l">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hdn-aS-tgH">
+                                <rect key="frame" x="126" y="13" width="72" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R8j-ec-pIw">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="DoneWasPressed:" target="Lpx-Ie-tlb" id="vqG-Sh-xLL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="breathingInColor" destination="t83-js-unm" id="7rK-x9-6kc"/>
+                        <outlet property="breathingOutColor" destination="j62-0q-GIl" id="FJX-jG-lgV"/>
+                        <outlet property="firstHoldingColor" destination="4o4-RZ-g2k" id="Y9A-MC-IaG"/>
+                    </connections>
+                </viewController>
+                <customObject id="L5B-xt-rWg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-807" y="20"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="nJS-X1-rcb"/>
-    </inferredMetricsTieBreakers>
 </document>
