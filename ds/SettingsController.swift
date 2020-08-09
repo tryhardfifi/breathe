@@ -11,6 +11,7 @@ import Cocoa
 class SettingsController: NSViewController {
     
    
+    @IBOutlet weak var durationLabel: NSTextField!
     @IBOutlet weak var progressionEnabled: NSButton!
     @IBOutlet weak var increaseByStepper: NSStepper!
     @IBOutlet weak var minutesStepper: NSStepper!
@@ -23,17 +24,7 @@ class SettingsController: NSViewController {
     var popoverView = NSPopover.init()
     
     @IBAction func progressionEnabled(_ sender: NSButton) {
-        if self.progressionEnabled.state.rawValue == 1 {
-          increaseByStepper.isEnabled = true
-          minutesStepper.isEnabled = true
-          timesStepper.isEnabled = true
         
-        }
-        else {
-            increaseByStepper.isEnabled = false
-            minutesStepper.isEnabled = false
-            timesStepper.isEnabled = false
-        }
         self.updateProgressionValues()
     }
     
@@ -54,7 +45,21 @@ class SettingsController: NSViewController {
     
     
     func updateProgressionValues(){
-        let propertyList = self.readPropertyList() as NSMutableDictionary
+        if self.progressionEnabled.state.rawValue == 1 {
+          increaseByStepper.isEnabled = true
+          minutesStepper.isEnabled = true
+          timesStepper.isEnabled = true
+          durationLabel.intValue = (timesLabel.intValue * minutesLabel.intValue)
+
+        
+        }
+        else {
+            increaseByStepper.isEnabled = false
+            minutesStepper.isEnabled = false
+            timesStepper.isEnabled = false
+            durationLabel.intValue = 0
+        }
+        let propertyList = self.readPropertyList()
         propertyList["progression_enabled"] = self.progressionEnabled.state.rawValue
         propertyList["progression_increase_by"] = self.increaseByLabel.intValue
         propertyList["progression_minutes"] = self.minutesLabel.intValue
@@ -191,8 +196,9 @@ class SettingsController: NSViewController {
         self.increaseByStepper.intValue = propertyList["progression_increase_by"] as! Int32
         self.minutesStepper.intValue = propertyList["progression_minutes"] as! Int32
         self.timesStepper.intValue = propertyList["progression_times"] as! Int32
-        
         if self.progressionEnabled.state.rawValue == 1 {
+          self.durationLabel.intValue = self.timesLabel.intValue * self.minutesLabel.intValue
+
           increaseByStepper.isEnabled = true
           minutesStepper.isEnabled = true
           timesStepper.isEnabled = true

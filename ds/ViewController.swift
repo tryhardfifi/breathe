@@ -42,6 +42,22 @@ class ViewController: NSViewController {
         }
      
     }
+    func progressionn(){
+        let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
+        var propertyList = self.readPropertyList()
+        if propertyList["progression_enabled"] as! Int == 1{
+            for i in 0...(propertyList["progression_times"] as! Int) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { //minutes * times
+                    var propertyList = self.readPropertyList() as! NSMutableDictionary
+                    propertyList["inflating"] = propertyList["inflating"] // + increase_by
+                    propertyList["deflating"] = propertyList["deflating"]
+                    propertyList["hold_after_inflating"] = propertyList["hold_after_inflating"]
+                    propertyList["hold_after_deflating"] = propertyList["hold_after_deflating"]
+                    propertyList.write(toFile: filepath, atomically: true)
+                }
+            }
+        }
+    }
     
     
     func inflate(){
