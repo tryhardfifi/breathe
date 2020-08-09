@@ -38,9 +38,11 @@ class ViewController: NSViewController {
     
         DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
             self.deflate()
+            
         }
      
     }
+    
     
     func inflate(){
         let duration = self.readPropertyList()

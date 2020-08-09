@@ -10,20 +10,67 @@ import Cocoa
 
 class SettingsController: NSViewController {
     
+   
+    @IBOutlet weak var progressionEnabled: NSButton!
+    @IBOutlet weak var increaseByStepper: NSStepper!
+    @IBOutlet weak var minutesStepper: NSStepper!
+    @IBOutlet weak var timesStepper: NSStepper!
+    @IBOutlet weak var increaseByLabel: NSTextField!
+    @IBOutlet weak var minutesLabel: NSTextField!
+    @IBOutlet weak var timesLabel: NSTextField!
     @IBOutlet weak var exerciseSelector: NSPopUpButton!
     @IBOutlet weak var anchorSelector: NSPopUpButton!
     var popoverView = NSPopover.init()
-   
     
-    @IBAction func quitBreatheWasPressed(_ sender: NSButton) {
-        NSApplication.shared.terminate(self)
+    @IBAction func progressionEnabled(_ sender: NSButton) {
+        if self.progressionEnabled.state.rawValue == 1 {
+          increaseByStepper.isEnabled = true
+          minutesStepper.isEnabled = true
+          timesStepper.isEnabled = true
+        
+        }
+        else {
+            increaseByStepper.isEnabled = false
+            minutesStepper.isEnabled = false
+            timesStepper.isEnabled = false
+        }
+        self.updateProgressionValues()
     }
     
-    @IBAction func closeWasPressed(_ sender: Any) {
-        self.view.window?.close()
+    @IBAction func increaseByWasUpdated(_ sender: NSStepper) {
+         increaseByLabel.stringValue = String(sender.integerValue)
+        self.updateProgressionValues()
+        
+    }
+    @IBAction func minutesWasUpdated(_ sender: NSStepper) {
+          minutesLabel.stringValue = String(sender.integerValue)
+        self.updateProgressionValues()
+
+    }
+    @IBAction func timesWasUpdated(_ sender: NSStepper) {
+          timesLabel.stringValue = String(sender.integerValue)
+        self.updateProgressionValues()
     }
     
+    
+    func updateProgressionValues(){
+        let propertyList = self.readPropertyList() as NSMutableDictionary
+        propertyList["progression_enabled"] = self.progressionEnabled.state.rawValue
+        propertyList["progression_increase_by"] = self.increaseByLabel.intValue
+        propertyList["progression_minutes"] = self.minutesLabel.intValue
+        propertyList["progression_times"] = self.timesLabel.intValue
+        let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
+        propertyList.write(toFile: filepath, atomically: true)
+    }
+    
+    
+   @IBAction func quitBreatheWasPressed(_ sender: NSButton) {
+       NSApplication.shared.terminate(self)
+   }
    
+   @IBAction func closeWasPressed(_ sender: Any) {
+       self.view.window?.close()
+   }
     @IBAction func aboutBreatheWasPressed(_ sender: NSButton) {
         guard let vc = storyboard?.instantiateController(withIdentifier: "AboutController") as? AboutController else {
             fatalError("Unable to find AboutController in the storyboard")
@@ -137,7 +184,20 @@ class SettingsController: NSViewController {
         let breathingInColorArray = propertyList["inflate_color"] as! NSDictionary
         let firstHoldingColorArray = propertyList["hold_color"] as! NSDictionary
         let breathingOutColorArray = propertyList["deflate_color"] as! NSDictionary
-       
+        self.progressionEnabled.intValue = propertyList["progression_enabled"] as! Int32
+        self.increaseByLabel.intValue = propertyList["progression_increase_by"] as! Int32
+        self.minutesLabel.intValue = propertyList["progression_minutes"] as! Int32
+        self.timesLabel.intValue = propertyList["progression_times"] as! Int32
+        self.increaseByStepper.intValue = propertyList["progression_increase_by"] as! Int32
+        self.minutesStepper.intValue = propertyList["progression_minutes"] as! Int32
+        self.timesStepper.intValue = propertyList["progression_times"] as! Int32
+        
+        if self.progressionEnabled.state.rawValue == 1 {
+          increaseByStepper.isEnabled = true
+          minutesStepper.isEnabled = true
+          timesStepper.isEnabled = true
+        }
+        
         anchorSelector.selectItem(withTitle: anchor)
         exercises.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }
         exerciseSelector.selectItem(withTitle: propertyList["exercise"] as! String)
@@ -156,14 +216,14 @@ class SettingsController: NSViewController {
      
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.view.window?.level = .floating
-        self.view.window?.title = "breathe 💨 preferences"
-        self.view.window?.titlebarAppearsTransparent = true
-        self.view.window?.styleMask.remove(.resizable)
-        self.view.window?.isOpaque = false
+        //self.view.window?.level = .floating
+       // self.view.window?.title = "breathe 💨 preferences"
+        //self.view.window?.titlebarAppearsTransparent = true
+        //self.view.window?.styleMask.remove(.resizable)
+       // self.view.window?.isOpaque = false
         self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
-        self.view.window?.titleVisibility = .hidden
-        self.view.window?.styleMask.remove(.titled)
+        //self.view.window?.titleVisibility = .hidden
+       // self.view.window?.styleMask.remove(.titled)
        
     }
    

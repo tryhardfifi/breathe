@@ -66,5 +66,13 @@
 		<key>blue</key>
 		<real>0.447086215</real>
 	</dict>
+	<key>progression_enabled</key>
+	<integer>0</integer>
+	<key>progression_increase_by</key>
+	<integer>0</integer>
+	<key>progression_minutes</key>
+	<integer>0</integer>
+	<key>progression_times</key>
+	<integer>0</integer>
 </dict>
 </plist>
