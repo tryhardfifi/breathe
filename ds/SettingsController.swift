@@ -15,7 +15,10 @@ class SettingsController: NSViewController {
     var popoverView = NSPopover.init()
    
     
-
+    @IBAction func quitBreatheWasPressed(_ sender: NSButton) {
+        NSApplication.shared.terminate(self)
+    }
+    
     @IBAction func closeWasPressed(_ sender: Any) {
         self.view.window?.close()
     }
