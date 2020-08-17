@@ -22,6 +22,7 @@ class ViewController: NSViewController {
           var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
           var plistData: [String:Any] = [:] //Our data
           let plistPath = applicationDocumentsDirectory().appending("/exercises.plist")
+        print(plistPath)
           let plistXML = FileManager.default.contents(atPath: plistPath)!
               do {//convert the data to a dictionary and handle errors.
               plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListFormat) as! [String:Any]
@@ -42,7 +43,7 @@ class ViewController: NSViewController {
         }
      
     }
-    func progressionn(){
+    func progression(){
         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
         var propertyList = self.readPropertyList()
         if propertyList["progression_enabled"] as! Int == 1{
@@ -62,15 +63,13 @@ class ViewController: NSViewController {
     
     func inflate(){
         let duration = self.readPropertyList()
-                let color = duration["inflate_color"] as! NSDictionary
-                self.view.window?.backgroundColor = NSColor.init(red: CGFloat(color["red"] as! NSNumber), green: CGFloat(color["green"] as! NSNumber), blue: CGFloat(color["blue"] as! NSNumber), alpha: 1)
+        let color = duration["inflate_color"] as! NSDictionary
+        self.view.window?.backgroundColor = NSColor.init(red: CGFloat(color["red"] as! NSNumber), green: CGFloat(color["green"] as! NSNumber), blue: CGFloat(color["blue"] as! NSNumber), alpha: 1)
         var self_duration = duration["inflate"] as! Double
         if self_duration == 0 {
             self_duration = 0.000000001
         }
         
-        self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.5, blue: 0.1, alpha: 0.85)
-
         NSAnimationContext.runAnimationGroup({_ in
          NSAnimationContext.beginGrouping()
              NSAnimationContext.current.duration = self_duration
@@ -128,7 +127,6 @@ class ViewController: NSViewController {
     
     func deflate(){
         let duration = self.readPropertyList()
-        print(duration["deflate_color"])
 
         let color = duration["deflate_color"] as! NSDictionary
         self.view.window?.backgroundColor = NSColor.init(red: CGFloat(color["red"] as! NSNumber), green: CGFloat(color["green"] as! NSNumber), blue: CGFloat(color["blue"] as! NSNumber), alpha: 1)
@@ -198,8 +196,8 @@ class ViewController: NSViewController {
         self.view.window?.styleMask.insert(.fullSizeContentView)
         self.view.window?.isOpaque = false
         self.view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 100)
-        let a = self.readPropertyList() as NSDictionary
-        let anchor = a["anchor"] as! String
+        let property_list = self.readPropertyList() as NSDictionary
+        let anchor = property_list["anchor"] as! String
         switch anchor {
         case "Down + Left":
             self.view.window?.setFrameOrigin(NSPoint(x:0,y:0))

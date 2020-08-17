@@ -13,6 +13,21 @@ class ColorController: NSViewController {
     @IBOutlet weak var firstHoldingColor: NSColorWell!
     @IBOutlet weak var breathingOutColor: NSColorWell!
     
+    @IBAction func showBreathingInPalette(_ sender: Any) {
+        NSApplication.shared.orderFrontColorPanel(sender)
+        breathingInColor.activate(true)
+    }
+    @IBAction func showHoldingPalette(_ sender: Any) {
+           NSApplication.shared.orderFrontColorPanel(sender)
+           firstHoldingColor.activate(true)
+       }
+       
+    @IBAction func showBreathingOutPalette(_ sender: Any) {
+           NSApplication.shared.orderFrontColorPanel(sender)
+           breathingOutColor.activate(true)
+       }
+       
+    
     @IBAction func breathingInColorWasUpdated(_ sender: NSColorWell) {
            self.set_color(string: "inflate_color", color: sender.color)
        }
@@ -38,12 +53,12 @@ class ColorController: NSViewController {
           let breathingInColorArray = propertyList["inflate_color"] as! NSDictionary
           let firstHoldingColorArray = propertyList["hold_color"] as! NSDictionary
           let breathingOutColorArray = propertyList["deflate_color"] as! NSDictionary
-          breathingInColor.color = NSColor.init(red: CGFloat(breathingInColorArray["red"] as! NSNumber), green: CGFloat(breathingInColorArray["green"] as! NSNumber), blue: CGFloat(breathingInColorArray["blue"] as! NSNumber), alpha: 1)
-          firstHoldingColor.color = NSColor.init(red: CGFloat(firstHoldingColorArray["red"] as! NSNumber), green: CGFloat(firstHoldingColorArray["green"] as! NSNumber), blue: CGFloat(firstHoldingColorArray["blue"] as! NSNumber), alpha: 1)
-          breathingOutColor.color = NSColor.init(red: CGFloat(breathingOutColorArray["red"] as! NSNumber), green: CGFloat(breathingOutColorArray["green"] as! NSNumber), blue: CGFloat(breathingOutColorArray["blue"] as! NSNumber), alpha: 1)
-        firstHoldingColor.activate(true)
-        breathingOutColor.activate(true)
-        breathingInColor.activate(true)
+//          breathingInColor.color = NSColor.init(red: CGFloat(breathingInColorArray["red"] as! NSNumber), green: CGFloat(breathingInColorArray["green"] as! NSNumber), blue: CGFloat(breathingInColorArray["blue"] as! NSNumber), alpha: 1)
+//          firstHoldingColor.color = NSColor.init(red: CGFloat(firstHoldingColorArray["red"] as! NSNumber), green: CGFloat(firstHoldingColorArray["green"] as! NSNumber), blue: CGFloat(firstHoldingColorArray["blue"] as! NSNumber), alpha: 1)
+//          breathingOutColor.color = NSColor.init(red: CGFloat(breathingOutColorArray["red"] as! NSNumber), green: CGFloat(breathingOutColorArray["green"] as! NSNumber), blue: CGFloat(breathingOutColorArray["blue"] as! NSNumber), alpha: 1)
+//        firstHoldingColor.activate(true)
+//        breathingOutColor.activate(true)
+//        breathingInColor.activate(true)
 
       }
     func set_color(string:String,color:NSColor){
