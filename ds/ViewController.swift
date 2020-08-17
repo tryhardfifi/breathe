@@ -22,7 +22,6 @@ class ViewController: NSViewController {
           var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
           var plistData: NSMutableDictionary = [:] //Our data
           let plistPath = applicationDocumentsDirectory().appending("/exercises.plist")
-        print(plistPath)
           let plistXML = FileManager.default.contents(atPath: plistPath)!
               do {//convert the data to a dictionary and handle errors.
               plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListFormat) as! NSMutableDictionary
@@ -55,7 +54,6 @@ class ViewController: NSViewController {
             for i in 0...(propertyList["progression_times"] as! Int) {
                 var dispatchAfter = DispatchTimeInterval.seconds(minutes*(i+1)*60)
                 DispatchQueue.main.asyncAfter(deadline: .now() + dispatchAfter) {
-                    print("hola")
                     propertyList["inflate"] = (propertyList["inflate"] as! Double) + increase_by
                     propertyList["deflate"] = (propertyList["deflate"] as! Double) + increase_by
                     propertyList["hold_after_inflate"] = (propertyList["hold_after_inflate"] as! Double) + increase_by

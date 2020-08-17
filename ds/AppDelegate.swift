@@ -7,6 +7,11 @@
 //
 
 import Cocoa
+import ServiceManagement
+
+extension Notification.Name {
+    static let killLauncher = Notification.Name("killLauncher")
+}
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -16,7 +21,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
           var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
           var plistData: [String:Any] = [:] //Our data
           let plistPath = applicationDocumentsDirectory().appending("/exercises.plist")
-        print(plistPath)
           let plistXML = FileManager.default.contents(atPath: plistPath)!
               do {//convert the data to a dictionary and handle errors.
               plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListFormat) as! [String:Any]
@@ -50,7 +54,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-    
+        
+        
         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
         if !FileManager.default.fileExists(atPath: filepath) {
             let new_property_list = self.readPropertyList() as NSDictionary
@@ -58,20 +63,46 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         else {
             let real_property_list = self.readRealPropertyList() as NSDictionary
-            if real_property_list.allKeys.count != 14
+            let property_list = self.readPropertyList() as NSDictionary
+
+            if real_property_list.allKeys.count != property_list.allKeys.count
             {
                 let new_property_list = self.readPropertyList() as NSDictionary
                 new_property_list.write(toFile: filepath, atomically: true)
             }
         }
-          let storyboard = NSStoryboard(name: "Main", bundle: nil)
-          guard let vc = storyboard.instantiateController(withIdentifier: "ViewController") as? ViewController else {
-              fatalError("Unable to find ViewController in the storyboard")
-          }
-          vc.presentAsModalWindow(vc)
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateController(withIdentifier: "ViewController") as? ViewController else {
+            fatalError("Unable to find ViewController in the storyboard")
+        }
+        vc.presentAsModalWindow(vc)
+        
+        let property_list = self.readRealPropertyList() as NSDictionary
+        if property_list["open_at_login"] as! Int == 1 {
+            let launcherAppId = "filipeisho.LauncherApplication"
+            let runningApps = NSWorkspace.shared.runningApplications
+            let isRunning = !runningApps.filter { $0.bundleIdentifier == launcherAppId }.isEmpty
+            SMLoginItemSetEnabled(launcherAppId as CFString, true)
+            if isRunning {
+                DistributedNotificationCenter.default().post(name: .killLauncher, object: Bundle.main.bundleIdentifier!)
+            }
+        }
+        else {
+            let launcherAppId = "filipeisho.LauncherApplication"
+            let runningApps = NSWorkspace.shared.runningApplications
+            let isRunning = !runningApps.filter { $0.bundleIdentifier == launcherAppId }.isEmpty
+            SMLoginItemSetEnabled(launcherAppId as CFString, false)
+            if isRunning {
+                DistributedNotificationCenter.default().post(name: .killLauncher, object: Bundle.main.bundleIdentifier!)
+            }
+        }
     }
-
-  
+    
    
 }
+
+
+
+
+    
 

@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import ServiceManagement
+
 
 class SettingsController: NSViewController {
     
@@ -15,6 +17,7 @@ class SettingsController: NSViewController {
     @IBOutlet weak var anchorSelector: NSPopUpButton!
     var popoverView = NSPopover.init()
   
+    @IBOutlet weak var openAtLogin: NSButton!
     
     
     
@@ -23,7 +26,28 @@ class SettingsController: NSViewController {
        NSApplication.shared.terminate(self)
    }
    
-   @IBAction func closeWasPressed(_ sender: Any) {
+    @IBAction func openAtLoginWasUpdated(_ sender: NSButton) {
+        let propertyList = self.readPropertyList() as NSMutableDictionary
+        let launcherAppId = "filipeisho.LauncherApplication"
+        let runningApps = NSWorkspace.shared.runningApplications
+        let isRunning = !runningApps.filter { $0.bundleIdentifier == launcherAppId }.isEmpty
+        
+        if sender.intValue == 1{
+            propertyList["open_at_login"] = true
+            SMLoginItemSetEnabled(launcherAppId as CFString, true)
+        }
+        else{
+            propertyList["open_at_login"] = false
+            SMLoginItemSetEnabled(launcherAppId as CFString, false)
+                      
+        }
+        if isRunning {
+            DistributedNotificationCenter.default().post(name: .killLauncher, object: Bundle.main.bundleIdentifier!)
+        }
+        let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
+        propertyList.write(toFile: filepath, atomically: true)
+    }
+    @IBAction func closeWasPressed(_ sender: Any) {
        self.view.window?.close()
    }
     @IBAction func aboutBreatheWasPressed(_ sender: NSButton) {
@@ -50,7 +74,6 @@ class SettingsController: NSViewController {
     }
   
     @IBAction func adjustColorsWasPressed(_ sender: NSButton) {
-        print("fs")
         guard let vc = storyboard?.instantiateController(withIdentifier: "ColorController") as? ColorController else {
             fatalError("Unable to find ColorController in the storyboard")
         }
@@ -139,7 +162,7 @@ class SettingsController: NSViewController {
         let breathingInColorArray = propertyList["inflate_color"] as! NSDictionary
         let firstHoldingColorArray = propertyList["hold_color"] as! NSDictionary
         let breathingOutColorArray = propertyList["deflate_color"] as! NSDictionary
-      
+        openAtLogin.intValue = propertyList["open_at_login"] as! Int32
         
         anchorSelector.selectItem(withTitle: anchor)
         exercises.keys.forEach() {self.exerciseSelector.addItem(withTitle: $0) }

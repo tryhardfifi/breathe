@@ -315,6 +315,17 @@
                                     <segue destination="j69-Wk-fG2" kind="popover" popoverAnchorView="AlY-Re-UUR" popoverBehavior="t" preferredEdge="maxY" id="j7X-dr-k4a"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yNG-cl-iu5">
+                                <rect key="frame" x="196" y="146" width="115" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Open at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2US-ZA-BNZ">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openAtLoginWasUpdated:" target="SUN-0T-fHH" id="bFR-Gp-oZo"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -322,10 +333,11 @@
                         <outlet property="anchorWasUpdated" destination="0FD-0r-7Dx" id="5nd-8L-cZD"/>
                         <outlet property="deleteWasPressed" destination="A1H-1c-vVu" id="sxj-CL-taQ"/>
                         <outlet property="exerciseSelector" destination="JUg-9a-L08" id="sgu-UO-d7s"/>
+                        <outlet property="openAtLogin" destination="yNG-cl-iu5" id="x5Y-lt-O9x"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-434" y="125"/>
+            <point key="canvasLocation" x="-434.5" y="124.5"/>
         </scene>
         <!--New Exercise Controller-->
         <scene sceneID="YG4-bg-WPy">

@@ -20,6 +20,7 @@ class AboutController: NSViewController {
     @IBAction func byFilipeishoWasPressed(_ sender: Any) {
         let url = URL(fileURLWithPath: "https://github.com/filipeisho/breathe")
         NSWorkspace.shared.open(url)
+        self.view.window?.close()
     }
     override func viewDidAppear() {
           super.viewDidAppear()

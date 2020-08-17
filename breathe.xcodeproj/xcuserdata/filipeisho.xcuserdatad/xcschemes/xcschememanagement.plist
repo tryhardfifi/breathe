@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>LauncherApplication.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>breathe.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -22,6 +27,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>806C0E9024EAF9EA001E6314</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>80856E6624D4247A000CA7E6</key>
 		<dict>
 			<key>primary</key>

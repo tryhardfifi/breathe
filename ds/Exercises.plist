@@ -74,5 +74,7 @@
 	<integer>1</integer>
 	<key>progression_times</key>
 	<integer>1</integer>
+	<key>open_at_login</key>
+	<false/>
 </dict>
 </plist>

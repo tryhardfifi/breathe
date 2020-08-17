@@ -95,9 +95,6 @@ class AdvancedController: NSViewController {
         self.progressionEnabled.intValue = propertyList["progression_enabled"] as! Int32
         self.increaseByLabel.intValue = propertyList["progression_increase_by"] as! Int32
         self.increaseByLabel.stringValue = String((propertyList["progression_increase_by"] as! Double)*0.1)
-        print(String((propertyList["progression_increase_by"] as! Double)*0.1))
-        print(propertyList["progression_increase_by"])
-        print(propertyList["progression_increase_by"] as! Int32)
         self.minutesLabel.intValue = propertyList["progression_minutes"] as! Int32
         self.timesLabel.intValue = propertyList["progression_times"] as! Int32
         self.increaseByStepper.intValue = propertyList["progression_increase_by"] as! Int32
