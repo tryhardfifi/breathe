@@ -11,18 +11,9 @@
             <objects>
                 <viewController title="About" storyboardIdentifier="AboutController" id="AOl-xZ-yAY" customClass="AboutController" customModule="breathe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="GqX-nm-Jzi">
-                        <rect key="frame" x="0.0" y="0.0" width="357" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="357" height="317"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="irz-sA-hIQ">
-                                <rect key="frame" x="133" y="23" width="89" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="by @filipeisho" id="VO6-ze-Xo5">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kUU-CV-qMv">
                                 <rect key="frame" x="262" y="13" width="81" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -35,10 +26,31 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hEF-4h-c8t">
-                                <rect key="frame" x="78" y="59" width="199" height="211"/>
+                                <rect key="frame" x="78" y="106" width="199" height="211"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="💨" id="pmI-Wg-Rqa">
                                     <font key="font" metaFont="system" size="179"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0B6-1U-FLk">
+                                <rect key="frame" x="232" y="61" width="105" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="bevel" title="by @filipeisho" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="ZQS-8V-Um1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system" size="16"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="systemIndigoColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="byFilipeishoWasPressed:" target="AOl-xZ-yAY" id="zjw-qw-vbp"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TxO-9x-gxR">
+                                <rect key="frame" x="18" y="69" width="213" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Found a bug? Want a feature?  --&gt;" id="BvE-Sf-6XM">
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -48,7 +60,7 @@
                 </viewController>
                 <customObject id="OYJ-1H-INx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5" y="-401"/>
+            <point key="canvasLocation" x="-5.5" y="-377.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="c8H-Ju-COd">
@@ -688,7 +700,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3lG-rH-Aj7">
                                 <rect key="frame" x="157" y="91" width="33" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" continuous="YES" enabled="NO" borderStyle="border" title="2" id="hsn-fP-HPV">
+                                <textFieldCell key="cell" lineBreakMode="clipping" continuous="YES" enabled="NO" borderStyle="border" title="1" id="hsn-fP-HPV">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -706,7 +718,7 @@
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qkw-yi-kem">
                                 <rect key="frame" x="131" y="87" width="19" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <stepperCell key="cell" continuous="YES" enabled="NO" alignment="left" minValue="1" maxValue="100" doubleValue="2" id="8oz-lK-XJv"/>
+                                <stepperCell key="cell" continuous="YES" enabled="NO" alignment="left" minValue="1" maxValue="100" doubleValue="1" id="8oz-lK-XJv"/>
                                 <connections>
                                     <action selector="timesWasUpdated:" target="j69-Wk-fG2" id="5rM-aK-Xzt"/>
                                 </connections>
@@ -765,7 +777,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0m-q8-jd8">
                                 <rect key="frame" x="157" y="125" width="33" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" continuous="YES" enabled="NO" borderStyle="border" title="2" id="Gbz-XM-fmW">
+                                <textFieldCell key="cell" lineBreakMode="clipping" continuous="YES" enabled="NO" borderStyle="border" title="1" id="Gbz-XM-fmW">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -774,7 +786,7 @@
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vJx-yS-Sfu">
                                 <rect key="frame" x="131" y="121" width="19" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <stepperCell key="cell" continuous="YES" enabled="NO" alignment="left" maxValue="100" doubleValue="1" id="W06-lC-oLV"/>
+                                <stepperCell key="cell" continuous="YES" enabled="NO" alignment="left" minValue="1" maxValue="100" doubleValue="1" id="W06-lC-oLV"/>
                                 <connections>
                                     <action selector="increaseByWasUpdated:" target="j69-Wk-fG2" id="eoO-lq-9ne"/>
                                 </connections>

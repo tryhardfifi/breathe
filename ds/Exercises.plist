@@ -69,10 +69,10 @@
 	<key>progression_enabled</key>
 	<integer>0</integer>
 	<key>progression_increase_by</key>
-	<integer>0</integer>
+	<integer>1</integer>
 	<key>progression_minutes</key>
-	<integer>0</integer>
+	<integer>1</integer>
 	<key>progression_times</key>
-	<integer>0</integer>
+	<integer>1</integer>
 </dict>
 </plist>
