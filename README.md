@@ -1,14 +1,28 @@
 # breathe: peripheral breath trainer 💨💨
 
-Breathe is a (distraction-free) peripheral breath trainer, it helps you breathe correctly so you can stay calm and focus on what matters. Breathe's window is small and it always stays on top so you can look at it peripherally, while doing other stuff.
+breathe is a (distraction-free) peripheral breath trainer, it helps you breathe correctly so you can stay calm and focus on what matters. Breathe's window is small and it always stays on top so you can look at it peripherally, while doing other stuff.
 
 ![Alt Text](./github.gif)
 
+## Features
+- ✅ Custom exercises
+- ✅ Custom window color for each step
+- ✅ Anchoring selector
+- ✅ Transport between spaces and works on fullscreen
+- ✅ Progressively increase time intervals
+- ✅ Open at login
+- 🚧 Fluid color change between steps
+
+
+
 ## Motivation
-I did this 5 minute project after reading some articles on how breathing correctly can help you focus and can calm you. I don't expect this to work for everyone but it does indeed work for me. Some of the articles:
-- https://news.ycombinator.com/item?id=13508038
-- https://news.ycombinator.com/item?id=23271572
-- https://news.ycombinator.com/item?id=23962638
+
+I created this project after reading some hn articles on how breathing correctly can help you focus and can calm you. I don't expect this to work for everyone but it does indeed work for me. Some of the articles:
+- https://quietkit.com/box-breathing/
+- https://www.theguardian.com/lifeandstyle/2020/jul/26/every-breath-you-take-the-lost-art-of-breathing
+- https://www.wsj.com/articles/the-healing-power-of-proper-breathing-11590098696
+
+If you want to see the Show HN thread: https://news.ycombinator.com/item?id=24008678
 
 ## Installation
 
@@ -29,10 +43,11 @@ Right now breathe doesn't run on linux but [@amar-laksh](https://github.com/amar
 
 Feel free to Contribute to this project!
 
-## Credits
+## Contributors
 
 -   [@filipeisho](https://github.com/filipeisho)
 -   [@amar-laksh](https://github.com/amar-laksh)
+-   [@guimcaballero](https://github.com/guimcaballero)
 
 ## License
 
