@@ -60,7 +60,7 @@ class AdvancedController: NSViewController {
          }
          let propertyList = self.readPropertyList()
          propertyList["progression_enabled"] = self.progressionEnabled.state.rawValue
-         propertyList["progression_increase_by"] = self.increaseByLabel.doubleValue * 10
+         propertyList["progression_increase_by"] = self.increaseByLabel.doubleValue
          propertyList["progression_minutes"] = self.minutesLabel.intValue
          propertyList["progression_times"] = self.timesLabel.intValue
          let filepath = applicationDocumentsDirectory().appending("/exercises.plist")

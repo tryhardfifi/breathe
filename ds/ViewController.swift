@@ -18,14 +18,14 @@ class ViewController: NSViewController {
            return basePath
        }
 
-      func readPropertyList()  -> [String:Any] {
+      func readPropertyList()  -> NSMutableDictionary {
           var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
-          var plistData: [String:Any] = [:] //Our data
+          var plistData: NSMutableDictionary = [:] //Our data
           let plistPath = applicationDocumentsDirectory().appending("/exercises.plist")
         print(plistPath)
           let plistXML = FileManager.default.contents(atPath: plistPath)!
               do {//convert the data to a dictionary and handle errors.
-              plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListFormat) as! [String:Any]
+              plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListFormat) as! NSMutableDictionary
               
           } catch {
               print("Error reading plist: \(error), format: \(propertyListFormat)")
@@ -36,27 +36,37 @@ class ViewController: NSViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
-            self.deflate()
-            
-        }
+        self.progression()
      
     }
     func progression(){
         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
-        var propertyList = self.readPropertyList()
+        var propertyList = self.readPropertyList() as! NSMutableDictionary
+        var exercises = propertyList["exercises"] as! NSMutableDictionary
+        var exercise = exercises[propertyList["exercise"]] as! NSMutableDictionary
+        propertyList["inflate"] = exercise["inflate"]
+        propertyList["deflate"] = exercise["inflate"]
+        propertyList["hold_after_inflate"] = exercise["hold_after_inflate"]
+        propertyList["hold_after_deflate"] = exercise["hold_after_deflate"]
+        propertyList.write(toFile: filepath, atomically: true)
+        let minutes = propertyList["progression_minutes"] as! Int
+        let increase_by = propertyList["progression_increase_by"] as! Double
         if propertyList["progression_enabled"] as! Int == 1{
             for i in 0...(propertyList["progression_times"] as! Int) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { //minutes * times
-                    var propertyList = self.readPropertyList() as! NSMutableDictionary
-                    propertyList["inflating"] = propertyList["inflating"] // + increase_by
-                    propertyList["deflating"] = propertyList["deflating"]
-                    propertyList["hold_after_inflating"] = propertyList["hold_after_inflating"]
-                    propertyList["hold_after_deflating"] = propertyList["hold_after_deflating"]
+                var dispatchAfter = DispatchTimeInterval.seconds(minutes*(i+1)*60)
+                DispatchQueue.main.asyncAfter(deadline: .now() + dispatchAfter) {
+                    print("hola")
+                    propertyList["inflate"] = (propertyList["inflate"] as! Double) + increase_by
+                    propertyList["deflate"] = (propertyList["deflate"] as! Double) + increase_by
+                    propertyList["hold_after_inflate"] = (propertyList["hold_after_inflate"] as! Double) + increase_by
+                    propertyList["hold_after_deflate"] = (propertyList["hold_after_deflate"] as! Double) + increase_by
                     propertyList.write(toFile: filepath, atomically: true)
                 }
             }
+        }
+            
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+                self.deflate()
         }
     }
     
@@ -69,7 +79,6 @@ class ViewController: NSViewController {
         if self_duration == 0 {
             self_duration = 0.000000001
         }
-        
         NSAnimationContext.runAnimationGroup({_ in
          NSAnimationContext.beginGrouping()
              NSAnimationContext.current.duration = self_duration
@@ -130,8 +139,7 @@ class ViewController: NSViewController {
 
         let color = duration["deflate_color"] as! NSDictionary
         self.view.window?.backgroundColor = NSColor.init(red: CGFloat(color["red"] as! NSNumber), green: CGFloat(color["green"] as! NSNumber), blue: CGFloat(color["blue"] as! NSNumber), alpha: 1)
-        
-        var self_duration = duration["deflate"] as! Double
+            var self_duration = duration["deflate"] as! Double
         if self_duration == 0 {
                    self_duration = 0.000000001
                }

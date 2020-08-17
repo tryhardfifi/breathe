@@ -37,6 +37,7 @@ class NewExerciseController: NSViewController {
         exercises[exerciseName.stringValue] = new_exercise
         propertyList["inflate"] = breathingInLabel.intValue
         propertyList["deflate"] = breathingOutLabel.intValue
+        propertyList["exercise"] = exerciseName.stringValue
         propertyList["hold_after_inflate"] = firstHoldingLabel.intValue
         propertyList["hold_after_deflate"] = secondHoldingLabel.intValue
         propertyList["exercises"] = exercises
