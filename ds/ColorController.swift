@@ -28,17 +28,19 @@ class ColorController: NSViewController {
        }
        
     
-     @IBAction func ChangeWasPressed(_ sender: NSButton) {
-        self.set_color(string: "deflate_color", color: breathingOutColor.color)
-        self.set_color(string: "inflate_color", color: breathingInColor.color)
-        self.set_color(string: "hold_color", color: firstHoldingColor.color)
+     @IBAction func DoneWasPressed(_ sender: NSButton) {
+        
         self.view.window?.performClose(sender)
         self.view.window?.close()
         
      }
+    override func viewWillDisappear() {
+        self.set_color(string: "deflate_color", color: breathingOutColor.color)
+        self.set_color(string: "inflate_color", color: breathingInColor.color)
+        self.set_color(string: "hold_color", color: firstHoldingColor.color)
+     }
       override func viewDidLoad() {
           super.viewDidLoad()
-        print("asedasasddasd")
           let propertyList = self.readPropertyList()
           let exercises = propertyList["exercises"] as! [String:AnyObject]
           let anchor = propertyList["anchor"] as! String
