@@ -12,21 +12,21 @@ class ColorController: NSViewController {
     @IBOutlet weak var breathingInColor: NSColorWell!
     @IBOutlet weak var firstHoldingColor: NSColorWell!
     @IBOutlet weak var breathingOutColor: NSColorWell!
-    
-    @IBAction func showBreathingInPalette(_ sender: Any) {
-        NSApplication.shared.orderFrontColorPanel(sender)
-        breathingInColor.activate(true)
-    }
-    @IBAction func showHoldingPalette(_ sender: Any) {
-           NSApplication.shared.orderFrontColorPanel(sender)
-           firstHoldingColor.activate(true)
-       }
-       
-    @IBAction func showBreathingOutPalette(_ sender: Any) {
-           NSApplication.shared.orderFrontColorPanel(sender)
-           breathingOutColor.activate(true)
-       }
-       
+//
+//    @IBAction func showBreathingInPalette(_ sender: Any) {
+////        NSApplication.shared.orderFrontColorPanel(sender)
+////        breathingInColor.activate(true)
+//    }
+//    @IBAction func showHoldingPalette(_ sender: Any) {
+//           NSApplication.shared.orderFrontColorPanel(sender)
+//           firstHoldingColor.activate(true)
+//       }
+//
+//    @IBAction func showBreathingOutPalette(_ sender: Any) {
+//          NSApplication.shared.orderFrontColorPanel(sender)
+//           breathingOutColor.activate(true)
+//       }
+//
     
      @IBAction func DoneWasPressed(_ sender: NSButton) {
         
@@ -41,6 +41,8 @@ class ColorController: NSViewController {
      }
       override func viewDidLoad() {
           super.viewDidLoad()
+         NSApplication.shared.orderFrontColorPanel(self)
+
           let propertyList = self.readPropertyList()
           let exercises = propertyList["exercises"] as! [String:AnyObject]
           let anchor = propertyList["anchor"] as! String
