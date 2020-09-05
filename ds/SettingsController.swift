@@ -156,6 +156,7 @@ class SettingsController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let propertyList = self.readPropertyList()
         let exercises = propertyList["exercises"] as! [String:AnyObject]
         let anchor = propertyList["anchor"] as! String

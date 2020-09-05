@@ -41,6 +41,8 @@ extension AppDelegate: NSApplicationDelegate {
             
             let newPath = NSString.path(withComponents: components)
             NSWorkspace.shared.launchApplication(newPath)
+          
+
         }
         else {
             self.terminate()

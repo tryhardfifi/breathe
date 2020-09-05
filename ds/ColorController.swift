@@ -12,22 +12,7 @@ class ColorController: NSViewController {
     @IBOutlet weak var breathingInColor: NSColorWell!
     @IBOutlet weak var firstHoldingColor: NSColorWell!
     @IBOutlet weak var breathingOutColor: NSColorWell!
-//
-//    @IBAction func showBreathingInPalette(_ sender: Any) {
-////        NSApplication.shared.orderFrontColorPanel(sender)
-////        breathingInColor.activate(true)
-//    }
-//    @IBAction func showHoldingPalette(_ sender: Any) {
-//           NSApplication.shared.orderFrontColorPanel(sender)
-//           firstHoldingColor.activate(true)
-//       }
-//
-//    @IBAction func showBreathingOutPalette(_ sender: Any) {
-//          NSApplication.shared.orderFrontColorPanel(sender)
-//           breathingOutColor.activate(true)
-//       }
-//
-    
+
      @IBAction func DoneWasPressed(_ sender: NSButton) {
         
         self.view.window?.performClose(sender)
@@ -38,10 +23,21 @@ class ColorController: NSViewController {
         self.set_color(string: "deflate_color", color: breathingOutColor.color)
         self.set_color(string: "inflate_color", color: breathingInColor.color)
         self.set_color(string: "hold_color", color: firstHoldingColor.color)
+
      }
+    override func viewDidAppear() {
+               
+     let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
+             let path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString
+             let task = Process()
+             task.launchPath = "/usr/bin/open"
+             task.arguments = [path]
+             task.launch()
+        
+    }
       override func viewDidLoad() {
           super.viewDidLoad()
-         NSApplication.shared.orderFrontColorPanel(self)
+
 
           let propertyList = self.readPropertyList()
           let exercises = propertyList["exercises"] as! [String:AnyObject]
