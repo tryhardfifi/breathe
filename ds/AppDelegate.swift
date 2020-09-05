@@ -15,7 +15,7 @@ extension Notification.Name {
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-   
+      
     
       func readRealPropertyList()  -> [String:Any] {
           var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
@@ -54,7 +54,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
+        let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
+             let path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString
+             let task = Process()
+             task.launchPath = "/usr/bin/open"
+             task.arguments = [path]
+             task.launch()
         
         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
         if !FileManager.default.fileExists(atPath: filepath) {
