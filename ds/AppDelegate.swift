@@ -51,10 +51,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
              let basePath = paths.first ?? ""
              return basePath
          }
-
+   
+ 
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-   
+        let allowed_apps = Set(NSWorkspace.shared.runningApplications)
+        DispatchQueue.global(qos: .userInitiated).async {
+            while true {
+                sleep(2)
+                let apps = Set(NSWorkspace.shared.runningApplications)
+                print(Array(allowed_apps.symmetricDifference(apps)))
+                   
+            }
+        }
+            
         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
         if !FileManager.default.fileExists(atPath: filepath) {
             let new_property_list = self.readPropertyList() as NSDictionary
