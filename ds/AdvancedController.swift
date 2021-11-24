@@ -92,14 +92,14 @@ class AdvancedController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let propertyList = self.readPropertyList()
-        self.progressionEnabled.intValue = propertyList["progression_enabled"] as! Int32
-        self.increaseByLabel.intValue = propertyList["progression_increase_by"] as! Int32
+        self.progressionEnabled.intValue = Int32(propertyList["progression_enabled"] as! Double)
+        self.increaseByLabel.intValue = Int32(propertyList["progression_increase_by"] as! Double)
         self.increaseByLabel.stringValue = String((propertyList["progression_increase_by"] as! Double)*0.1)
         self.minutesLabel.intValue = propertyList["progression_minutes"] as! Int32
         self.timesLabel.intValue = propertyList["progression_times"] as! Int32
-        self.increaseByStepper.intValue = propertyList["progression_increase_by"] as! Int32
-        self.minutesStepper.intValue = propertyList["progression_minutes"] as! Int32
-        self.timesStepper.intValue = propertyList["progression_times"] as! Int32
+        self.increaseByStepper.intValue = Int32(propertyList["progression_increase_by"] as! Double)
+        self.minutesStepper.intValue = Int32(propertyList["progression_minutes"] as! Double)
+        self.timesStepper.intValue = Int32(propertyList["progression_times"] as! Int32)
         if self.progressionEnabled.state.rawValue == 1 {
           self.durationLabel.intValue = self.timesLabel.intValue * self.minutesLabel.intValue
 
