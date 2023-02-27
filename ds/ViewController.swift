@@ -9,36 +9,36 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
-    @IBOutlet weak var coloredView: GraphView!
-   
-      func applicationDocumentsDirectory() -> String {
-      let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
-           let basePath = paths.first ?? ""
-           return basePath
-       }
-
-      func readPropertyList()  -> NSMutableDictionary {
-          var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
-          var plistData: NSMutableDictionary = [:] //Our data
-          let plistPath = applicationDocumentsDirectory().appending("/exercises.plist")
-          let plistXML = FileManager.default.contents(atPath: plistPath)!
-              do {//convert the data to a dictionary and handle errors.
-              plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListFormat) as! NSMutableDictionary
-              
-          } catch {
-              print("Error reading plist: \(error), format: \(propertyListFormat)")
-          }
-          return plistData
-      }
     
-  
+    @IBOutlet weak var coloredView: GraphView!
+    
+    func applicationDocumentsDirectory() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        let basePath = paths.first ?? ""
+        return basePath
+    }
+    
+    func readPropertyList()  -> NSMutableDictionary {
+        var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
+        var plistData: NSMutableDictionary = [:] //Our data
+        let plistPath = applicationDocumentsDirectory().appending("/exercises.plist")
+        let plistXML = FileManager.default.contents(atPath: plistPath)!
+        do {//convert the data to a dictionary and handle errors.
+            plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListFormat) as! NSMutableDictionary
+            
+        } catch {
+            print("Error reading plist: \(error), format: \(propertyListFormat)")
+        }
+        return plistData
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.progression()
-     
+        
     }
-
+    
     func createInitialColor(color: NSDictionary) -> NSColor {
         return NSColor.init(
             red: CGFloat(truncating: color["red"] as! NSNumber),
@@ -47,7 +47,7 @@ class ViewController: NSViewController {
             alpha: 1
         )
     }
-
+    
     func progression(){
         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
         let propertyList = self.readPropertyList()
@@ -72,9 +72,9 @@ class ViewController: NSViewController {
                 }
             }
         }
-            
+        
         DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
-                self.deflate()
+            self.deflate()
         }
     }
     
@@ -88,75 +88,75 @@ class ViewController: NSViewController {
             self_duration = 0.000000001
         }
         NSAnimationContext.runAnimationGroup({_ in
-         NSAnimationContext.beginGrouping()
-             NSAnimationContext.current.duration = self_duration
-             var origin = self.coloredView.frame.origin
-             origin.x -= 20
-             origin.y -= 20
-             self.coloredView.animator().setFrameOrigin(origin)
+            NSAnimationContext.beginGrouping()
+            NSAnimationContext.current.duration = self_duration
+            var origin = self.coloredView.frame.origin
+            origin.x -= 20
+            origin.y -= 20
+            self.coloredView.animator().setFrameOrigin(origin)
             NSAnimationContext.beginGrouping()
             NSAnimationContext.current.duration = self_duration
             var size = self.coloredView.frame.size
             size.height *= 2
             size.width *= 2
             self.coloredView.animator().setFrameSize(size)
-
+            
             NSAnimationContext.endGrouping()
-       
+            
             NSAnimationContext.endGrouping()
         }, completionHandler:{
-                   self.hold_after_inflate()
-            })
+            self.hold_after_inflate()
+        })
         
     }
-
+    
     func hold_after_inflate(){
-          let duration = self.readPropertyList()
-                let color = duration["hold_color"] as! NSDictionary
+        let duration = self.readPropertyList()
+        let color = duration["hold_color"] as! NSDictionary
         self.view.window?.backgroundColor = createInitialColor(color: color)
-
+        
         var self_duration = duration["hold_after_inflate"] as! Double
         if self_duration == 0 {
-                   self_duration = 0.000000001
-               }
-           NSAnimationContext.runAnimationGroup({_ in
-                  NSAnimationContext.beginGrouping()
-                      NSAnimationContext.current.duration = self_duration
-                      var origin = self.coloredView.frame.origin
-                      origin.x -= 0.0000001
-                      self.coloredView.animator().setFrameOrigin(origin)
-                      
-                     NSAnimationContext.beginGrouping()
-                     NSAnimationContext.current.duration = self_duration
-                     var size = self.coloredView.frame.size
-                     size.height *= 1.00000001
-                     size.width *= 1.00000001
-                     self.coloredView.animator().setFrameSize(size)
-
-                     NSAnimationContext.endGrouping()
-                
-                     NSAnimationContext.endGrouping()
-                 }, completionHandler:{
-                            self.deflate()
-                     })
-      }
-
+            self_duration = 0.000000001
+        }
+        NSAnimationContext.runAnimationGroup({_ in
+            NSAnimationContext.beginGrouping()
+            NSAnimationContext.current.duration = self_duration
+            var origin = self.coloredView.frame.origin
+            origin.x -= 0.0000001
+            self.coloredView.animator().setFrameOrigin(origin)
+            
+            NSAnimationContext.beginGrouping()
+            NSAnimationContext.current.duration = self_duration
+            var size = self.coloredView.frame.size
+            size.height *= 1.00000001
+            size.width *= 1.00000001
+            self.coloredView.animator().setFrameSize(size)
+            
+            NSAnimationContext.endGrouping()
+            
+            NSAnimationContext.endGrouping()
+        }, completionHandler:{
+            self.deflate()
+        })
+    }
+    
     
     func deflate(){
         let duration = self.readPropertyList()
-
+        
         let color = duration["deflate_color"] as! NSDictionary
         self.view.window?.backgroundColor = createInitialColor(color: color)
-            var self_duration = duration["deflate"] as! Double
+        var self_duration = duration["deflate"] as! Double
         if self_duration == 0 {
-                   self_duration = 0.000000001
-               }
+            self_duration = 0.000000001
+        }
         NSAnimationContext.runAnimationGroup({_ in
-         NSAnimationContext.beginGrouping()
-             NSAnimationContext.current.duration = self_duration
-             var origin = self.coloredView.frame.origin
-             origin.x += 20
-             origin.y += 20
+            NSAnimationContext.beginGrouping()
+            NSAnimationContext.current.duration = self_duration
+            var origin = self.coloredView.frame.origin
+            origin.x += 20
+            origin.y += 20
             self.coloredView.animator().setFrameOrigin(origin)
             NSAnimationContext.beginGrouping()
             NSAnimationContext.current.duration = self_duration
@@ -167,43 +167,43 @@ class ViewController: NSViewController {
             NSAnimationContext.endGrouping()
             NSAnimationContext.endGrouping()
         }, completionHandler:{
-                self.hold_after_deflate()
-            })
+            self.hold_after_deflate()
+        })
     }
-  
-   func hold_after_deflate(){
-    let duration = self.readPropertyList()
-    let color = duration["hold_color"] as! NSDictionary
-       self.view.window?.backgroundColor = createInitialColor(color: color)
-    var self_duration = duration["hold_after_deflate"] as! Double
-    if self_duration == 0 {
-               self_duration = 0.000000001
-           }
-         NSAnimationContext.runAnimationGroup({_ in
-                NSAnimationContext.beginGrouping()
-                    NSAnimationContext.current.duration = self_duration
-                    var origin = self.coloredView.frame.origin
-                    origin.x -= 0.0000001
-                    self.coloredView.animator().setFrameOrigin(origin)
-                    
-                   NSAnimationContext.beginGrouping()
-                   NSAnimationContext.current.duration = self_duration
-                   var size = self.coloredView.frame.size
-                   size.height *= 1.00000001
-                   size.width *= 1.00000001
-                   self.coloredView.animator().setFrameSize(size)
-
-                   NSAnimationContext.endGrouping()
-              
-                   NSAnimationContext.endGrouping()
-               }, completionHandler:{
-                          self.inflate()
-                   })
+    
+    func hold_after_deflate(){
+        let duration = self.readPropertyList()
+        let color = duration["hold_color"] as! NSDictionary
+        self.view.window?.backgroundColor = createInitialColor(color: color)
+        var self_duration = duration["hold_after_deflate"] as! Double
+        if self_duration == 0 {
+            self_duration = 0.000000001
+        }
+        NSAnimationContext.runAnimationGroup({_ in
+            NSAnimationContext.beginGrouping()
+            NSAnimationContext.current.duration = self_duration
+            var origin = self.coloredView.frame.origin
+            origin.x -= 0.0000001
+            self.coloredView.animator().setFrameOrigin(origin)
+            
+            NSAnimationContext.beginGrouping()
+            NSAnimationContext.current.duration = self_duration
+            var size = self.coloredView.frame.size
+            size.height *= 1.00000001
+            size.width *= 1.00000001
+            self.coloredView.animator().setFrameSize(size)
+            
+            NSAnimationContext.endGrouping()
+            
+            NSAnimationContext.endGrouping()
+        }, completionHandler:{
+            self.inflate()
+        })
     }
-
+    
     override func viewDidAppear() {
         super.viewDidAppear()
-
+        
         //vc.view.window?.level = .floating
         self.view.window?.title = "breathe💨"
         self.view.window?.titlebarAppearsTransparent = true
@@ -226,15 +226,15 @@ class ViewController: NSViewController {
         default:
             self.view.window?.setFrameOrigin(NSPoint(x:0,y:0))
         }
-
+        
     }
     override func dismiss (_ sender: Any?)
-       {
-            if let wc = self.view.window?.windowController
-            {
-                 wc.dismissController (sender)
-            }
-       }
-           
-
+    {
+        if let wc = self.view.window?.windowController
+        {
+            wc.dismissController (sender)
+        }
+    }
+    
+    
 }
