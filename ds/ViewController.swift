@@ -38,11 +38,21 @@ class ViewController: NSViewController {
         self.progression()
      
     }
+
+    func createInitialColor(color: NSDictionary) -> NSColor {
+        return NSColor.init(
+            red: CGFloat(truncating: color["red"] as! NSNumber),
+            green: CGFloat(truncating: color["green"] as! NSNumber),
+            blue: CGFloat(truncating: color["blue"] as! NSNumber),
+            alpha: 1
+        )
+    }
+
     func progression(){
         let filepath = applicationDocumentsDirectory().appending("/exercises.plist")
-        var propertyList = self.readPropertyList() as! NSMutableDictionary
-        var exercises = propertyList["exercises"] as! NSMutableDictionary
-        var exercise = exercises[propertyList["exercise"]] as! NSMutableDictionary
+        let propertyList = self.readPropertyList()
+        let exercises = propertyList["exercises"] as! NSMutableDictionary
+        let exercise = exercises[propertyList["exercise"]!] as! NSMutableDictionary
         propertyList["inflate"] = exercise["inflate"]
         propertyList["deflate"] = exercise["inflate"]
         propertyList["hold_after_inflate"] = exercise["hold_after_inflate"]
@@ -52,7 +62,7 @@ class ViewController: NSViewController {
         let increase_by = propertyList["progression_increase_by"] as! Double
         if propertyList["progression_enabled"] as! Int == 1{
             for i in 0...(propertyList["progression_times"] as! Int) {
-                var dispatchAfter = DispatchTimeInterval.seconds(minutes*(i+1)*60)
+                let dispatchAfter = DispatchTimeInterval.seconds(minutes*(i+1)*60)
                 DispatchQueue.main.asyncAfter(deadline: .now() + dispatchAfter) {
                     propertyList["inflate"] = (propertyList["inflate"] as! Double) + increase_by
                     propertyList["deflate"] = (propertyList["deflate"] as! Double) + increase_by
@@ -72,7 +82,7 @@ class ViewController: NSViewController {
     func inflate(){
         let duration = self.readPropertyList()
         let color = duration["inflate_color"] as! NSDictionary
-        self.view.window?.backgroundColor = NSColor.init(red: CGFloat(color["red"] as! NSNumber), green: CGFloat(color["green"] as! NSNumber), blue: CGFloat(color["blue"] as! NSNumber), alpha: 1)
+        self.view.window?.backgroundColor = createInitialColor(color: color)
         var self_duration = duration["inflate"] as! Double
         if self_duration == 0 {
             self_duration = 0.000000001
@@ -103,7 +113,7 @@ class ViewController: NSViewController {
     func hold_after_inflate(){
           let duration = self.readPropertyList()
                 let color = duration["hold_color"] as! NSDictionary
-                self.view.window?.backgroundColor = NSColor.init(red: CGFloat(color["red"] as! NSNumber), green: CGFloat(color["green"] as! NSNumber), blue: CGFloat(color["blue"] as! NSNumber), alpha: 1)
+        self.view.window?.backgroundColor = createInitialColor(color: color)
 
         var self_duration = duration["hold_after_inflate"] as! Double
         if self_duration == 0 {
@@ -136,7 +146,7 @@ class ViewController: NSViewController {
         let duration = self.readPropertyList()
 
         let color = duration["deflate_color"] as! NSDictionary
-        self.view.window?.backgroundColor = NSColor.init(red: CGFloat(color["red"] as! NSNumber), green: CGFloat(color["green"] as! NSNumber), blue: CGFloat(color["blue"] as! NSNumber), alpha: 1)
+        self.view.window?.backgroundColor = createInitialColor(color: color)
             var self_duration = duration["deflate"] as! Double
         if self_duration == 0 {
                    self_duration = 0.000000001
@@ -164,7 +174,7 @@ class ViewController: NSViewController {
    func hold_after_deflate(){
     let duration = self.readPropertyList()
     let color = duration["hold_color"] as! NSDictionary
-    self.view.window?.backgroundColor = NSColor.init(red: CGFloat(color["red"] as! NSNumber), green: CGFloat(color["green"] as! NSNumber), blue: CGFloat(color["blue"] as! NSNumber), alpha: 1)
+       self.view.window?.backgroundColor = createInitialColor(color: color)
     var self_duration = duration["hold_after_deflate"] as! Double
     if self_duration == 0 {
                self_duration = 0.000000001
